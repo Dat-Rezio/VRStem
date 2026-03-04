@@ -2322,6 +2322,7 @@ GameObject:
   - component: {fileID: 1849201756}
   - component: {fileID: 1849201755}
   - component: {fileID: 1849201757}
+  - component: {fileID: 1849201758}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Planet
@@ -2592,6 +2593,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SnapToCircleVR
   snapManager: {fileID: 1565800223}
   rotateSpeed: 50
+--- !u!114 &1849201758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849201750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca369c1f53cadb4290726f5a5750788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SnapGhostPreview
+  snapManager: {fileID: 1565800223}
+  ghostMaterial: {fileID: 2100000, guid: 76a14daa9cab8c346a46673175a16e46, type: 2}
+  ghostScale: 1
 --- !u!1 &1977874615
 GameObject:
   m_ObjectHideFlags: 0
