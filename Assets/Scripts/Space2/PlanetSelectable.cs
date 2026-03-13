@@ -34,8 +34,6 @@ public class PlanetSelectable : MonoBehaviour
         float size = orbitRadius * originScale * 0.1f;
         transform.localScale = Vector3.one * size;
         
-        transform.position = orbit.GetPoint(0);
-        if(orbit.radiusX == 77.7f)
-            Debug.DrawLine(orbit.transform.position, orbit.GetPoint(0), Color.red);
+        // transform.position = orbit.GetPoint(0);
     }
 }
