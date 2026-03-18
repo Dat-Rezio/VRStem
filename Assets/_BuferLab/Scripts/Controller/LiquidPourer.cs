@@ -12,9 +12,9 @@ public class LiquidPourer : MonoBehaviour
     public LiquidStream streamVisuals;
     
     [Header("Thong so Tinh toan The tich")]
-    public float maxContainerVolume = 250f;
-    [Tooltip("Diem thap nhat cua day coc (Keo chinh object coc vao day neu pivot o day)")]
     public Transform cupBottom;
+    [Tooltip("So am de tang do nhay, so duong de giam do nhay")]
+    public float pourSensitivityOffset = -0.01f; 
 
     private LiquidContainer myContainer;
     private bool isPouring = false;
@@ -33,7 +33,6 @@ public class LiquidPourer : MonoBehaviour
             return;
         }
 
-        // 1. Tim diem thap nhat tren vanh coc (Quet 360 do)
         Vector3 lowestRimPoint = rimCenter.position;
         float minHeight = float.MaxValue;
         
@@ -41,7 +40,6 @@ public class LiquidPourer : MonoBehaviour
         {
             float angle = i * 10f * Mathf.Deg2Rad;
             Vector3 offset = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * rimRadius;
-            // Chuyen tu toa do RimCenter ra toa do the gioi
             Vector3 worldPoint = rimCenter.TransformPoint(offset);
             
             if (worldPoint.y < minHeight)
@@ -51,21 +49,15 @@ public class LiquidPourer : MonoBehaviour
             }
         }
 
-        // 2. Y tuong cua ban: Tinh chieu cao mat nuoc trong the gioi thuc
-        // Chieu cao nuoc ty le thuan voi the tich
-        float fillRatio = Mathf.Clamp01(myContainer.liquidData.volume / maxContainerVolume);
+        float fillRatio = Mathf.Clamp01(myContainer.liquidData.volume / myContainer.maxVolume);
         
-        // Gia lap do cao cua mat nuoc (Tu day coc tro len)
-        float currentWaterLevelY = Mathf.Lerp(cupBottom.position.y, rimCenter.position.y, fillRatio);
+        // Them bu tru vao day de ban chu dong viec cham mep hay chua
+        float currentWaterLevelY = Mathf.Lerp(cupBottom.position.y, rimCenter.position.y, fillRatio) + pourSensitivityOffset;
 
-        // 3. Kich hoat rot neu mat nuoc cao hon diem thap nhat cua mieng coc
         if (currentWaterLevelY > lowestRimPoint.y)
         {
-            // Tinh toan luc rot dua vao viec mat nuoc vuot qua mieng coc bao nhieu
             float overflowAmount = currentWaterLevelY - lowestRimPoint.y;
-            // Chuan hoa gia tri overflow de lam ty le rot (0 den 1)
             float tiltPercentage = Mathf.Clamp01(overflowAmount / (rimRadius * 2f));
-            
             PourLiquid(tiltPercentage, lowestRimPoint);
         }
         else if (isPouring)
@@ -92,7 +84,6 @@ public class LiquidPourer : MonoBehaviour
         {
             targetPoint = hit.point;
             LiquidContainer targetContainer = hit.collider.GetComponentInParent<LiquidContainer>();
-            
             if (targetContainer != null && targetContainer != myContainer)
             {
                 targetContainer.ReceiveLiquid(amountToPour, myContainer.liquidData);
@@ -102,11 +93,14 @@ public class LiquidPourer : MonoBehaviour
         if (streamVisuals != null)
         {
             float streamWidth = Mathf.Lerp(0.005f, 0.02f, tiltPercentage);
-            streamVisuals.BeginPour(myContainer.liquidData.liquidColor, streamWidth);
+            Color streamColor = myContainer.showPHColorMode ? 
+                ChemistryEngine.Instance.GetColorFromPH(myContainer.liquidData.phValue) : 
+                myContainer.liquidData.liquidColor;
+            
+            streamVisuals.BeginPour(streamColor, streamWidth);
             
             Vector3 pourDirection = (pourPosition - rimCenter.position).normalized;
             Vector3 initialVelocity = pourDirection * (1.5f * tiltPercentage); 
-            
             streamVisuals.UpdateParabola(pourPosition, targetPoint, initialVelocity);
         }
     }
@@ -115,38 +109,5 @@ public class LiquidPourer : MonoBehaviour
     {
         isPouring = false;
         if (streamVisuals != null) streamVisuals.EndPour();
-    }
-
-    // CONG CU KIEM TRA TRUC QUAN TRONG EDITOR
-    void OnDrawGizmos()
-    {
-        if (rimCenter == null) return;
-
-        // Ve vong tron 360 do tai mieng coc bang mau vang
-        Gizmos.color = Color.yellow;
-        Vector3 prevPoint = rimCenter.TransformPoint(new Vector3(Mathf.Cos(0), 0, Mathf.Sin(0)) * rimRadius);
-        
-        Vector3 lowestPoint = prevPoint;
-        float minHeight = prevPoint.y;
-
-        for (int i = 1; i <= 36; i++)
-        {
-            float angle = i * 10f * Mathf.Deg2Rad;
-            Vector3 offset = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * rimRadius;
-            Vector3 currentPoint = rimCenter.TransformPoint(offset);
-            
-            Gizmos.DrawLine(prevPoint, currentPoint);
-            prevPoint = currentPoint;
-
-            if (currentPoint.y < minHeight)
-            {
-                minHeight = currentPoint.y;
-                lowestPoint = currentPoint;
-            }
-        }
-
-        // Ve mot khoi cau mau do chi dung diem se rot nuoc ra
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(lowestPoint, 0.01f);
     }
 }
