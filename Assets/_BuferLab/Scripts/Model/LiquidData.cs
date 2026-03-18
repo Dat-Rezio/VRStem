@@ -4,32 +4,28 @@ using System.Collections.Generic;
 [System.Serializable]
 public class LiquidData
 {
-    [Tooltip("The tich hien tai (ml)")]
-    public float volume;
+    public string liquidName = "Empty";
+    public float volume = 0f; // ml
+    public Color liquidColor = new Color(1f, 1f, 1f, 0f);
+    public float phValue = 7.0f;
+    
+    // Tu dien luu tru so Mol cua tung chat
+    public Dictionary<string, float> chemicalComponents = new Dictionary<string, float>();
 
-    [Tooltip("Do pH hien tai")]
-    public float phValue;
-
-    [Tooltip("Mau sac hien tai cua dung dich")]
-    public Color liquidColor;
-
-    [Tooltip("Ten dung dich de hien thi len UI")]
-    public string liquidName;
-
-    [Tooltip("Cuon so cai luu tru ten chat va so mol tuong ung")]
-    public Dictionary<string, float> chemicalComponents;
-
-    // Day la ham Constructor (Ham khoi tao)
-    public LiquidData(float initialVolume, float initialPh, Color initialColor, string name)
+    // 1. Constructor mac dinh (khong tham so) de cac file moi hoat dong
+    public LiquidData() 
     {
-        volume = initialVolume;
-        phValue = initialPh;
-        liquidColor = initialColor;
-        liquidName = name;
-        chemicalComponents = new Dictionary<string, float>();
     }
 
-    // Ham ho tro de them hoac cong don so mol cua mot chat
+    // 2. Constructor 4 tham so de tuong thich voi file HoloButton.cs cu cua ban
+    public LiquidData(string name, float vol, Color color, float ph)
+    {
+        liquidName = name;
+        volume = vol;
+        liquidColor = color;
+        phValue = ph;
+    }
+
     public void AddChemical(string chemicalName, float moles)
     {
         if (chemicalComponents.ContainsKey(chemicalName))

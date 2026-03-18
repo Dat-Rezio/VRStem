@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30240a50b68793f48a36aaea61b355fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LiquidStream
+  streamMaterial: {fileID: 2100000, guid: c51173fd133e9ba4aa96cd206ca5afaa, type: 2}
 --- !u!1 &3249795724178265409
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,19 +762,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a50b039b8dad345acfe7f9889ea89c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LiquidContainer
-  maxCapacity: 100
-  initialName: Empty
-  initialVolume: 0
-  initialPh: 7
-  initialColor: {r: 1, g: 1, b: 1, a: 0}
   liquidData:
-    volume: 0
-    phValue: 0
-    liquidColor: {r: 0, g: 0, b: 0, a: 0}
     liquidName: 
+    volume: 0
+    liquidColor: {r: 0, g: 0, b: 0, a: 0}
+    phValue: 0
+  maxVolume: 100
   liquidRenderer: {fileID: 4021967789961687787}
   shaderMinFill: -0.13
   shaderMaxFill: 0.08
+  showPHColorMode: 1
+  OnLiquidChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2562951791281605395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,10 +789,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LiquidPourer
   rimCenter: {fileID: 3343316080828319096}
   rimRadius: 0.075
-  maxPourRate: 50
+  maxPourRate: 150
   streamVisuals: {fileID: 6450845597422824693}
-  maxContainerVolume: 100
   cupBottom: {fileID: 4330581993629117330}
+  pourSensitivityOffset: -0.01
 --- !u!114 &942810322537139968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,7 +1047,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8431555702657542317}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 631488b3296951849ada607eac8d6727, type: 3}
   m_Name: 

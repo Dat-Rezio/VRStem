@@ -1,81 +1,64 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LiquidContainer : MonoBehaviour
 {
-    [Header("Cau hinh binh chua")]
-    public float maxCapacity = 250f;
-
-    // Them phan Khoi tao ban dau de nhap truc tiep tu Unity Editor
-    [Header("Khoi tao ban dau")]
-    public string initialName = "Empty";
-    public float initialVolume = 0f;
-    public float initialPh = 7f;
-    public Color initialColor = new Color(1f, 1f, 1f, 0f);
-
-    [Tooltip("Goi du lieu hoa hoc cua binh nay")]
     public LiquidData liquidData;
+    public float maxVolume = 250f; 
 
     [Header("Ket noi Do hoa")]
-    public MeshRenderer liquidRenderer;
+    public Renderer liquidRenderer;
     public float shaderMinFill = -0.5f;
     public float shaderMaxFill = 0.5f;
 
-    private Material liquidMaterial;
-    private int fillLevelPropID;
-    private int colorPropID;
+    [Header("Che do mau Sac")]
+    [Tooltip("Tich de xem mau theo do pH, bo tich de xem mau dung dich thuc te")]
+    public bool showPHColorMode = false;
+
+    public UnityEvent OnLiquidChanged;
 
     void Start()
     {
-        // Thay vi tao coc rong, he thong se tao du lieu dua tren thong so ban da nhap o Inspector
-        liquidData = new LiquidData(initialVolume, initialPh, initialColor, initialName);
-
-        if (liquidRenderer != null)
-        {
-            liquidMaterial = liquidRenderer.material;
-            fillLevelPropID = Shader.PropertyToID("_FillLevel");
-            colorPropID = Shader.PropertyToID("_LiquidColor");
-        }
-
+        if (liquidData == null) liquidData = new LiquidData();
         UpdateVisuals();
     }
 
-    // Ham nay de cac he thong khac (nhu ong hut, binh rot) goi vao khi muon them nuoc
-    // Thay doi tham so: Nhan vao toan bo goi du lieu cua coc rot (incomingData) thay vi chi nhan Mau sac
-    public void ReceiveLiquid(float addedVolume, LiquidData incomingData)
+    public void ReceiveLiquid(float amount, LiquidData incomingData)
     {
-        // Kiem tra tran binh
-        if (liquidData.volume + addedVolume > maxCapacity)
+        if (liquidData.volume + amount > maxVolume)
         {
-            addedVolume = maxCapacity - liquidData.volume;
+            amount = maxVolume - liquidData.volume;
         }
-
-        // Goi Bo Nao Hoa Hoc ra lam viec
-        // Truyen goi du lieu cua coc nay, goi du lieu cua coc rot, va luong nuoc rot vao
+        
         if (ChemistryEngine.Instance != null)
         {
-            ChemistryEngine.Instance.MixLiquids(this.liquidData, incomingData, addedVolume);
+            ChemistryEngine.Instance.MixLiquids(liquidData, incomingData, amount);
         }
-        else
-        {
-            Debug.LogWarning("Chua co ChemistryEngine trong Scene!");
-        }
+        
+        UpdateVisuals();
+        OnLiquidChanged?.Invoke();
+    }
 
+    // Ham de goi tu nut bam VR
+    public void TogglePHMode()
+    {
+        showPHColorMode = !showPHColorMode;
         UpdateVisuals();
     }
 
-    // Ham nay de dich tu The tich (ml) sang Chieu cao Shader (-0.5 den 0.5)
     public void UpdateVisuals()
     {
-        if (liquidMaterial == null) return;
+        if (liquidRenderer != null)
+        {
+            float fillRatio = liquidData.volume / maxVolume;
+            float currentFill = Mathf.Lerp(shaderMinFill, shaderMaxFill, fillRatio);
+            liquidRenderer.material.SetFloat("_FillLevel", currentFill);
 
-        // Tinh toan phan tram nuoc trong binh (Tu 0 den 1)
-        float fillPercentage = liquidData.volume / maxCapacity;
+            Color displayColor = showPHColorMode ? 
+                ChemistryEngine.Instance.GetColorFromPH(liquidData.phValue) : 
+                liquidData.liquidColor;
 
-        // Chuyen phan tram do sang toa do cua Shader
-        float currentFillLevel = Mathf.Lerp(shaderMinFill, shaderMaxFill, fillPercentage);
-
-        // Gui du lieu xuong Card do hoa
-        liquidMaterial.SetFloat(fillLevelPropID, currentFillLevel);
-        liquidMaterial.SetColor(colorPropID, liquidData.liquidColor);
+            liquidRenderer.material.SetColor("_LiquidColor", displayColor);
+        }
     }
 }
