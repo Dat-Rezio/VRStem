@@ -15680,7 +15680,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1939264655}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -15690,8 +15690,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 170944553
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1876279523
 RectTransform:
@@ -15702,7 +15702,7 @@ RectTransform:
   m_GameObject: {fileID: 1876279519}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 118243621}
@@ -16272,6 +16272,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!20 &1939264655 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 2009001152}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1946277512
 GameObject:
   m_ObjectHideFlags: 0
@@ -16647,6 +16652,7 @@ MonoBehaviour:
   targetScale: 100
   modelAppearScale: 10
   quizDelay: 3
+  zoomInDuration: 2
   planetGroupBig: {fileID: 788239679}
   sun: {fileID: 2730358004931163090}
   pivot: {fileID: 0}
@@ -17856,6 +17862,9 @@ MonoBehaviour:
   buttonD: {fileID: 1833672034}
   feedbackText: {fileID: 1571511930}
   completePanel: {fileID: 1010250573}
+  quizCanvas: {fileID: 1876279522}
+  heightAbovePlanet: 2
+  targetCamera: {fileID: 1939264655}
 --- !u!1 &2143560393
 GameObject:
   m_ObjectHideFlags: 0

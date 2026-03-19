@@ -18,12 +18,16 @@ public class PlanetQuiz : MonoBehaviour
     public TextMeshProUGUI feedbackText;
     public GameObject completePanel;
 
+    [Header("World Space Settings")]
+    public Canvas quizCanvas;
+    public float heightAbovePlanet = 2f; // Độ cao phía trên hành tinh
+    public Camera targetCamera;
+
     private string[] allPlanets = { "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" };
 
     private string correctAnswer = "";
     private HashSet<string> answeredPlanets = new HashSet<string>();
 
-    // Lưu PlanetVisual của hành tinh nhỏ đang được hỏi
     private PlanetVisual currentPlanetVisual = null;
 
     private void Awake() => Instance = this;
@@ -34,16 +38,29 @@ public class PlanetQuiz : MonoBehaviour
         completePanel.SetActive(false);
         feedbackText.text = "";
 
-        // Hiện "?" trên tất cả hành tinh nhỏ lúc đầu
         InitAllLabels();
     }
 
     private void InitAllLabels()
     {
-        // Tìm tất cả PlanetVisual trong PlanetGroup nhỏ
         PlanetVisual[] allVisuals = FindObjectsOfType<PlanetVisual>();
         foreach (PlanetVisual v in allVisuals)
             v.ShowQuestionMark();
+    }
+
+    private void PlaceCanvasAbovePlanet()
+    {
+        if (targetCamera == null || quizCanvas == null) return;
+        if (currentPlanetVisual == null) return;
+
+        // Đặt canvas phía trên đầu hành tinh
+        Vector3 planetPos = currentPlanetVisual.transform.position;
+        quizCanvas.transform.position = planetPos + Vector3.up * heightAbovePlanet;
+
+        // Canvas luôn quay mặt về phía camera
+        quizCanvas.transform.rotation = Quaternion.LookRotation(
+            quizCanvas.transform.position - targetCamera.transform.position
+        );
     }
 
     public void StartQuiz(string planetName, PlanetVisual visual)
@@ -66,6 +83,8 @@ public class PlanetQuiz : MonoBehaviour
         SetButtonColor(buttonC, Color.white);
         SetButtonColor(buttonD, Color.white);
 
+        // Đặt canvas trên đầu hành tinh rồi mới hiện
+        PlaceCanvasAbovePlanet();
         quizPanel.SetActive(true);
     }
 
@@ -80,14 +99,12 @@ public class PlanetQuiz : MonoBehaviour
     {
         if (answer == correctAnswer)
         {
-            // ĐÚNG
             SetButtonColor(btn, Color.green);
             feedbackText.text = "Chính xác!";
             feedbackText.color = Color.green;
 
             answeredPlanets.Add(correctAnswer);
 
-            // Hiện tên xanh trên hành tinh nhỏ
             if (currentPlanetVisual != null)
                 currentPlanetVisual.ShowCorrectLabel();
 
@@ -95,7 +112,6 @@ public class PlanetQuiz : MonoBehaviour
         }
         else
         {
-            // SAI
             SetButtonColor(btn, Color.red);
             feedbackText.text = "Sai rồi! Thử lại nhé.";
             feedbackText.color = Color.red;
@@ -106,15 +122,12 @@ public class PlanetQuiz : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        // Ẩn quiz
         quizPanel.SetActive(false);
         feedbackText.text = "";
 
-        // Zoom out về hệ mặt trời
         if (SolarSystemFocus.Instance != null)
             SolarSystemFocus.Instance.ZoomOut();
 
-        // Kiểm tra hoàn thành
         if (answeredPlanets.Count >= allPlanets.Length)
             StartCoroutine(ShowComplete());
     }
