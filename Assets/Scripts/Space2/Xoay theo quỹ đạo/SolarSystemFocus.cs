@@ -13,18 +13,19 @@ public class SolarSystemFocus : MonoBehaviour
     public float targetScale = 100f;
     public float modelAppearScale = 10f;
     public float quizDelay = 3f;
+    public float zoomInDuration = 2f; // Thời gian zoom in
 
     [Header("Planet Groups")]
-    public Transform planetGroupBig; // Kéo PlanetGroup (1) vào đây
+    public Transform planetGroupBig;
 
     [Header("Sun")]
-    public GameObject sun; // Kéo Sun vào đây trong Inspector
+    public GameObject sun;
 
     public Transform pivot;
     bool focusing;
 
-    PlanetVisual smallPlanetVisual;  // Visual của hành tinh NHỎ
-    PlanetVisual bigPlanetVisual;    // Visual của hành tinh TO
+    PlanetVisual smallPlanetVisual;
+    PlanetVisual bigPlanetVisual;
     PlanetSelectable currentPlanetSelectable;
     string currentPlanetName;
 
@@ -42,28 +43,76 @@ public class SolarSystemFocus : MonoBehaviour
         currentPlanetSelectable = planet.GetComponent<PlanetSelectable>();
         currentPlanetName = visual.planetName;
 
-        // Tìm PlanetVisual của hành tinh TO tương ứng
         bigPlanetVisual = FindBigPlanetVisual(currentPlanetName);
 
         planetController.SetPlanetZoom(visual);
         pivot = ChangePivot(solarRoot, planet.position);
         scaleKnob.ChangePivot(pivot);
-        focusing = true;
 
         // Ẩn tất cả vòng quỹ đạo, hành tinh và mặt trời khi zoom vào
         SetAllRingsVisible(false);
         SetAllPlanetsVisible(false);
         if (sun != null) sun.SetActive(false);
 
-        // Giữ lại hành tinh đang được focus bằng SetVisible
+        // Giữ lại hành tinh đang được focus
         PlanetSelectable focusedPlanet = planet.GetComponent<PlanetSelectable>();
         if (focusedPlanet != null)
             focusedPlanet.SetVisible(true);
 
+        // Dùng Coroutine thay vì Update để zoom mượt hơn
+        StartCoroutine(ZoomInRoutine());
+
         Debug.Log(planet.name);
     }
 
-    // Tìm PlanetVisual trong PlanetGroup (1) theo tên
+    private IEnumerator ZoomInRoutine()
+    {
+        focusing = true;
+        float elapsed = 0f;
+        float startScale = pivot.localScale.x;
+
+        while (elapsed < zoomInDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / zoomInDuration;
+            t = t * t * (3f - 2f * t); // smoothstep giống ZoomOut
+
+            float scale = Mathf.Lerp(startScale, targetScale, t);
+            pivot.localScale = Vector3.one * scale;
+
+            if (scale >= modelAppearScale)
+                smallPlanetVisual.ShowModel();
+            else
+                smallPlanetVisual.ShowMarker();
+
+            yield return null;
+        }
+
+        pivot.localScale = Vector3.one * targetScale;
+        smallPlanetVisual.ShowModel();
+        focusing = false;
+
+        if (currentPlanetSelectable != null)
+            currentPlanetSelectable.ResetFocus();
+
+        bool alreadyAnswered = PlanetQuiz.Instance != null &&
+                               PlanetQuiz.Instance.IsAnswered(currentPlanetName);
+
+        if (alreadyAnswered)
+        {
+            Debug.Log($"[SolarSystemFocus] Hiện InfoPanel cho {currentPlanetName}");
+            if (bigPlanetVisual != null)
+                bigPlanetVisual.ShowInfo();
+            else
+                Debug.LogWarning($"[SolarSystemFocus] Không tìm thấy bigPlanetVisual cho {currentPlanetName}!");
+        }
+        else
+        {
+            Debug.Log($"[SolarSystemFocus] Chưa trả lời {currentPlanetName} → hiện quiz");
+            StartCoroutine(ShowQuizAfterDelay(currentPlanetName, smallPlanetVisual, quizDelay));
+        }
+    }
+
     private PlanetVisual FindBigPlanetVisual(string name)
     {
         if (planetGroupBig == null) return null;
@@ -75,14 +124,12 @@ public class SolarSystemFocus : MonoBehaviour
         return null;
     }
 
-    // Bật/tắt tất cả vòng quỹ đạo
     private void SetAllRingsVisible(bool visible)
     {
         foreach (var ring in FindObjectsOfType<OvalRing>())
             ring.SetRingVisible(visible);
     }
 
-    // Bật/tắt tất cả hành tinh nhỏ
     private void SetAllPlanetsVisible(bool visible)
     {
         foreach (var planet in FindObjectsOfType<PlanetSelectable>())
@@ -91,45 +138,7 @@ public class SolarSystemFocus : MonoBehaviour
 
     void Update()
     {
-        if (!focusing) return;
-
-        float scale = Mathf.Lerp(
-            pivot.localScale.x,
-            targetScale,
-            Time.deltaTime * zoomSpeed
-        );
-
-        pivot.localScale = Vector3.one * scale;
-
-        if (scale >= modelAppearScale)
-            smallPlanetVisual.ShowModel();
-        else
-            smallPlanetVisual.ShowMarker();
-
-        if (Mathf.Abs(scale - targetScale) < 0.01f)
-        {
-            focusing = false;
-
-            if (currentPlanetSelectable != null)
-                currentPlanetSelectable.ResetFocus();
-
-            bool alreadyAnswered = PlanetQuiz.Instance != null &&
-                                   PlanetQuiz.Instance.IsAnswered(currentPlanetName);
-
-            if (alreadyAnswered)
-            {
-                Debug.Log($"[SolarSystemFocus] Hiện InfoPanel cho {currentPlanetName}");
-                if (bigPlanetVisual != null)
-                    bigPlanetVisual.ShowInfo();
-                else
-                    Debug.LogWarning($"[SolarSystemFocus] Không tìm thấy bigPlanetVisual cho {currentPlanetName}!");
-            }
-            else
-            {
-                Debug.Log($"[SolarSystemFocus] Chưa trả lời {currentPlanetName} → hiện quiz");
-                StartCoroutine(ShowQuizAfterDelay(currentPlanetName, smallPlanetVisual, quizDelay));
-            }
-        }
+        // Không còn dùng Update để zoom nữa
     }
 
     private IEnumerator ShowQuizAfterDelay(string planetName, PlanetVisual visual, float delay)
@@ -146,7 +155,6 @@ public class SolarSystemFocus : MonoBehaviour
         if (bigPlanetVisual != null)
             bigPlanetVisual.HideInfo();
 
-        // Hiện lại tất cả vòng quỹ đạo, hành tinh và mặt trời khi zoom out
         SetAllRingsVisible(true);
         SetAllPlanetsVisible(true);
         if (sun != null) sun.SetActive(true);
