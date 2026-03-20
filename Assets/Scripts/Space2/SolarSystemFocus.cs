@@ -7,22 +7,45 @@ public class SolarSystemFocus : MonoBehaviour
     public Transform solarRoot;
     
     public PlanetController planetController;
-
+    public Handle handle;
     public float zoomSpeed = 2f;
+    public float minScale = 0.5f;
     public float targetScale = 100f;
-    public float modelAppearScale = 10f;
+    public float modelAppearScale = 1f;
+
+    [SerializeField]private bool showModel = false;
+    
+    public void SetSystemScale(float progress)
+    {
+        Debug.Log(progress);
+        // Chuyển đổi progress từ (0-100) sang (0-1)
+        float t = progress / 100f;
+
+        // Nội suy giá trị scale dựa trên progress
+        float newScale = Mathf.Lerp(minScale, targetScale, t);
+
+        // Áp dụng cho solarRoot hoặc pivot hiện tại
+        if (pivot != null)
+        {
+            pivot.localScale = Vector3.one * newScale;
+        }
+
+        
+        // Cập nhật trạng thái hiển thị Model/Marker dựa trên scale mới
+        // UpdateVisuals(newScale);
+    }
 
     public Transform pivot;
-    bool focusing;
+    public bool focusing;
 
-    PlanetVisual planetVisual;
+    public PlanetVisual planetVisual;
     
     public XRScaleKnobDelta scaleKnob;
 
     private void Awake()
     {
         Instance = this;
-        pivot = transform;
+        pivot = solarRoot;
     }
 
     public void FocusPlanet(Transform planet, PlanetVisual visual)
@@ -32,12 +55,24 @@ public class SolarSystemFocus : MonoBehaviour
         // dùng hàm ChangePivot
         Debug.Log(planet.name);
         pivot = ChangePivot(solarRoot, planet.position);
-        scaleKnob.ChangePivot(pivot);
         focusing = true;
     }
 
     void Update()
     {
+        //Check scale
+        // Debug.Log(solarRoot.localScale + " " + modelAppearScale + " " + solarRoot.lossyScale);
+        if (solarRoot.lossyScale.x >= modelAppearScale && !showModel)
+        {
+            planetVisual.ShowModel();
+            showModel = true;
+        }
+        else if (solarRoot.lossyScale.x < modelAppearScale && showModel)
+        {
+            planetVisual.ShowMarker();
+            showModel = false;
+        }
+
         if (!focusing) return;
 
         float scale = Mathf.Lerp(
@@ -45,16 +80,11 @@ public class SolarSystemFocus : MonoBehaviour
             targetScale,
             Time.deltaTime * zoomSpeed
         );
+        
+        handle.UpdateHandleByScale(scale);
 
         pivot.localScale = Vector3.one * scale;
         
-        // Debug.Log(scale);
-
-        if (scale >= modelAppearScale)
-            planetVisual.ShowModel();
-        else
-            planetVisual.ShowMarker();
-
         if (Mathf.Abs(scale - targetScale) < 0.01f)
             focusing = false;
     }
