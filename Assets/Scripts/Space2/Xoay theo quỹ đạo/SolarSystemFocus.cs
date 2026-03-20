@@ -13,7 +13,7 @@ public class SolarSystemFocus : MonoBehaviour
     public float targetScale = 100f;
     public float modelAppearScale = 10f;
     public float quizDelay = 3f;
-    public float zoomInDuration = 2f; // Thời gian zoom in
+    public float zoomInDuration = 2f;
 
     [Header("Planet Groups")]
     public Transform planetGroupBig;
@@ -49,17 +49,17 @@ public class SolarSystemFocus : MonoBehaviour
         pivot = ChangePivot(solarRoot, planet.position);
         scaleKnob.ChangePivot(pivot);
 
-        // Ẩn tất cả vòng quỹ đạo, hành tinh và mặt trời khi zoom vào
+        // Reset scale về 1 trước khi zoom để lần 2 giống lần 1
+        pivot.localScale = Vector3.one;
+
         SetAllRingsVisible(false);
         SetAllPlanetsVisible(false);
         if (sun != null) sun.SetActive(false);
 
-        // Giữ lại hành tinh đang được focus
         PlanetSelectable focusedPlanet = planet.GetComponent<PlanetSelectable>();
         if (focusedPlanet != null)
             focusedPlanet.SetVisible(true);
 
-        // Dùng Coroutine thay vì Update để zoom mượt hơn
         StartCoroutine(ZoomInRoutine());
 
         Debug.Log(planet.name);
@@ -75,7 +75,7 @@ public class SolarSystemFocus : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float t = elapsed / zoomInDuration;
-            t = t * t * (3f - 2f * t); // smoothstep giống ZoomOut
+            t = t * t * (3f - 2f * t);
 
             float scale = Mathf.Lerp(startScale, targetScale, t);
             pivot.localScale = Vector3.one * scale;
@@ -136,10 +136,7 @@ public class SolarSystemFocus : MonoBehaviour
             planet.SetVisible(visible);
     }
 
-    void Update()
-    {
-        // Không còn dùng Update để zoom nữa
-    }
+    void Update() { }
 
     private IEnumerator ShowQuizAfterDelay(string planetName, PlanetVisual visual, float delay)
     {
@@ -191,6 +188,10 @@ public class SolarSystemFocus : MonoBehaviour
         {
             pivot = objectToMove.parent;
             Transform oldParent = pivot.parent;
+
+            // Reset scale trước khi di chuyển pivot
+            pivot.localScale = Vector3.one;
+
             objectToMove.SetParent(oldParent);
             pivot.position = newPivotPosition;
             pivot.rotation = objectToMove.rotation;
