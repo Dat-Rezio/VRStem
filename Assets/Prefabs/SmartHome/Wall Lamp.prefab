@@ -83,7 +83,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -455,7 +455,6 @@ MonoBehaviour:
   spinSpeed: 1000
   rotationAxis: {x: 0, y: 0, z: 1}
   securityCamera: {fileID: 0}
-  noSignalTexts: []
   doorHinge: {fileID: 0}
   openAngle: 90
   swingSpeed: 3

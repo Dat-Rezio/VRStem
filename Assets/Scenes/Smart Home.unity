@@ -6811,7 +6811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIToggleController
   uiPanel: {fileID: 689170259}
-  toggleAction: {fileID: -3599823989380923159, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
+  toggleAction: {fileID: -8069514856583376848, guid: 0be0028c24f2a4c14a96b6aa39055933, type: 3}
 --- !u!4 &447764151 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8481927620584298091, guid: 5ef97b9e0c0a9b141a93e8783cc952d2, type: 3}
@@ -8793,63 +8793,77 @@ MonoBehaviour:
   stages:
   - stageName: Intro
     dialogues:
-    - "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi th\u1EED nghi\xEAm Nh\xE0
-      th\xF4ng minh. H\xF4m nay ch\xFAng ta s\u1EBD c\xF9ng t\xECm hi\u1EC3u v\xE0
+    - "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi th\u1EED nghi\u1EC7m Nh\xE0
+      th\xF4ng minh.\nH\xF4m nay ch\xFAng ta s\u1EBD c\xF9ng t\xECm hi\u1EC3u v\xE0
       m\xF4 ph\u1ECFng l\u1EA1i c\xE1ch m\u1ED9t ng\xF4i nh\xE0 th\xF4ng minh ho\u1EA1t
-      \u0111\u1ED9ng nh\xE9!"
+      \u0111\u1ED9ng nh\xE9! \nH\xE3y c\xF9ng ti\u1EBFn v\xE0o trong \u0111\u1EC3
+      b\u1EAFt \u0111\u1EA7u kh\xE1m ph\xE1 n\xE0o!"
     waitForAction: 0
   - stageName: Task_Spawn
     dialogues:
     - "Tr\u01B0\u1EDBc h\u1EBFt ch\xFAng ta h\xE3y c\xF9ng th\xEAm m\u1ED9t v\xE0i
       thi\u1EBFt b\u1ECB th\xF4ng minh c\xF3 th\u1EC3 \u0111i\u1EC1u khi\u1EC3n t\u1EEB
-      xa v\xE0o trong c\u0103n nh\xE0 n\xE0o."
+      xa v\xE0o trong c\u0103n nh\xE0."
     - "B\u1EA1n h\xE3y s\u1EED d\u1EE5ng b\u1EA3ng \u0111i\u1EC1u khi\u1EC3n tr\xEAn
-      c\xE1nh tay tr\xE1i (\u1EA5n B \u0111\u1EC3 b\u1EADt/t\u1EAFt b\u1EA3ng \u0111i\u1EC1u
-      khi\u1EC3n), b\u1EA5m v\xE0o n\xFAt \"Thi\u1EBFt b\u1ECB\"."
-    - "B\u1EA1n h\xE3y \u1EA5n v\xE0o n\xFAt l\u1EA5y thi\u1EBFt b\u1ECB b\u1EA5t
-      k\xEC \u0111\u1EC3 l\u1EA5y thi\u1EBFt b\u1ECB \u0111\xF3 ra nh\xE9."
-    - "Khi c\u1EA7m thi\u1EBFt b\u1ECB \u0111\xF3 l\xEAn, b\u1EA1n c\xF3 \u0111\u1EC3
+      c\xE1nh tay tr\xE1i (\u1EA5n N \u0111\u1EC3 b\u1EADt/t\u1EAFt b\u1EA3ng \u0111i\u1EC1u
+      khi\u1EC3n), b\u1EA5m v\xE0o n\xFAt <b>\"Thi\u1EBFt b\u1ECB\"</b>.\nB\u1EA1n
+      h\xE3y \u1EA5n v\xE0o n\xFAt l\u1EA5y thi\u1EBFt b\u1ECB b\u1EA5t k\xEC \u0111\u1EC3
+      l\u1EA5y thi\u1EBFt b\u1ECB \u0111\xF3 ra nh\xE9."
+    - "<b>H\xE3y c\u1EA7m th\u1EED thi\u1EBFt b\u1ECB \u0111\xF3 l\xEAn.</b>\nKhi
+      c\u1EA7m thi\u1EBFt b\u1ECB \u0111\xF3 l\xEAn, b\u1EA1n c\xF3 \u0111\u1EC3
       \xFD th\u1EA5y nh\u1EEFng \u1ED5 \u0111i\u1EC7n m\xE0u xanh l\xE1 xung quanh
       c\u0103n nh\xE0 kh\xF4ng. H\xE3y \u0111\u01B0a thi\u1EBFt b\u1ECB \u0111\xF3
       l\u1EA1i g\u1EA7n v\xE0 th\u1EA3 ra v\xE0o \u1ED5 \u0111i\u1EC7n \u0111\xF3
-      nh\xE9! "
-    - "Khi g\u1EAFn th\xE0nh c\xF4ng th\xEC thi\u1EBFt b\u1ECB s\u1EBD v\xE0o \u0111\xFAng
-      v\u1ECB tr\xED \u0111\xF3. Ch\xFAng ta c\xF9ng ti\u1EBFp t\u1EE5c \u0111\u1EC3
-      th\u1EED \u0111i\u1EC1u khi\u1EC3n n\xF3 n\xE0o!"
+      nh\xE9!\nKhi g\u1EAFn th\xE0nh c\xF4ng th\xEC thi\u1EBFt b\u1ECB s\u1EBD v\xE0o
+      \u0111\xFAng v\u1ECB tr\xED \u0111\xF3. "
+    - "\u0110\u1EC3 \u0111\u01A1n gi\u1EA3n h\xF3a b\xE0i h\u1ECDc, khi b\u1EA1n
+      g\u1EAFn c\xE1c thi\u1EBFt b\u1ECB v\xE0o \u1ED5, ch\xFAng s\u1EBD t\u1EF1
+      \u0111\u1ED9ng \u0111\u01B0\u1EE3c k\u1EBFt n\u1ED1i v\u1EDBi \u0111\u01B0\u1EDDng
+      \u0111i\u1EC7n trong nh\xE0, t\u1EF1 \u0111\u1ED9ng t\u1EA1o th\xE0nh m\u1ED9t
+      m\u1EA1ch \u0111i\u1EC7n k\xEDn. C\xE1c thi\u1EBFt b\u1ECB \u0111i\u1EC7n t\u1EED
+      ph\u1EA3i lu\xF4n \u0111\u01B0\u1EE3c c\u1EA5p \u0111i\u1EC7n \u0111\u1EC3
+      ho\u1EA1t \u0111\u1ED9ng.\n\u0110\xE2y c\u0169ng t\u01B0\u01A1ng \u1EE9ng v\u1EDBi
+      ch\u1EEF <b>S</b> trong Science."
     waitForAction: 0
   - stageName: Task_Control
     dialogues:
-    - "H\xE3y b\u1EADt b\u1ED9 \u0111i\u1EC1u khi\u1EC3n tr\xEAn tay tr\xE1i l\xEAn
-      (n\xFAt B). \u1EA4n v\xE0o n\xFAt \"\u0110i\u1EC1u khi\u1EC3n\" \u1EDF g\xF3c
-      tr\xEAn b\xEAn tr\xE1i."
-    - "B\u1EA1n \u0111\xE3 th\u1EA5y m\u1ED9t danh s\xE1ch c\xE1c thi\u1EBFt b\u1ECB
-      ch\u01B0a. C\xE1c thi\u1EBFt b\u1ECB \u0111\xE3 \u0111\u01B0\u1EE3c nh\xF3m
-      s\u1EB5n th\xE0nh c\xE1c nh\xF3m kh\xE1c nhau. B\u1EA1n c\xF3 th\u1EC3 k\xE9o
-      danh s\xE1ch thi\u1EBFt b\u1ECB \u0111\u1EC3 xem thi\u1EBFt b\u1ECB n\xE0o
-      t\u01B0\u01A1ng t\xE1c \u0111\u01B0\u1EE3c."
+    - "Sau khi g\u1EAFn xong, ch\xFAng ta h\xE3y th\u1EED b\u1EADt/t\u1EAFt c\xE1c
+      thi\u1EBFt b\u1ECB.\nH\xE3y b\u1EADt b\u1ED9 \u0111i\u1EC1u khi\u1EC3n tr\xEAn
+      tay tr\xE1i l\xEAn (n\xFAt N).\n\u1EA4n v\xE0o n\xFAt <b>\"\u0110i\u1EC1u khi\u1EC3n\"</b>
+      \u1EDF g\xF3c tr\xEAn b\xEAn tr\xE1i.\nB\u1EA1n \u0111\xE3 th\u1EA5y m\u1ED9t
+      danh s\xE1ch c\xE1c thi\u1EBFt b\u1ECB ch\u01B0a. \nC\xE1c thi\u1EBFt b\u1ECB
+      \u0111\xE3 \u0111\u01B0\u1EE3c nh\xF3m s\u1EB5n th\xE0nh c\xE1c nh\xF3m kh\xE1c
+      nhau. B\u1EA1n c\xF3 th\u1EC3 cu\u1ED9n danh s\xE1ch thi\u1EBFt b\u1ECB \u0111\u1EC3
+      xem thi\u1EBFt b\u1ECB n\xE0o t\u01B0\u01A1ng t\xE1c \u0111\u01B0\u1EE3c."
     - "H\xE3y th\u1EED \u1EA5n n\xFAt b\u1EADt/t\u1EAFt \u0111\u1EC3 b\u1EADt t\u1EAFt
       thi\u1EBFt b\u1ECB b\u1EA1n v\u1EEBa g\u1EAFn l\xEAn xem th\u1EED nh\xE9!"
     - "C\xE1c thi\u1EBFt b\u1ECB th\xF4ng minh hi\u1EC7n nay th\u01B0\u1EDDng ho\u1EA1t
-      \u0111\u1ED9ng d\u1EF1a v\xE0o s\u1EF1 k\u1EBFt h\u1EE3p ch\xEDnh gi\u1EEFa
-      c\xE1c th\xE0nh ph\u1EA7n: c\u1EA3m bi\u1EBFn, b\u1ED9 \u0111i\u1EC1u khi\u1EC3n,
-      k\u1EBFt n\u1ED1i. "
-    - "C\xE1c thi\u1EBFt b\u1ECB th\u01B0\u1EDDng th\u01B0c hi\u1EC7n k\u1EBFt n\u1ED1i
-      v\u1EDBi nhau th\xF4ng qua m\u1EA1ng internet (ph\u1ED5 bi\u1EBFn nh\u1EA5t
-      l\xE0 Wifi)."
-    - "Ng\u01B0\u1EDDi d\xF9ng s\u1EBD d\xF9ng c\xE1c b\u1ED9 \u0111i\u1EC1u khi\u1EC3n
-      \u0111\u01B0\u1EE3c x\xE2y d\u1EF1ng \u0111\u1EC3 t\xEDch h\u1EE3p v\u1EDBi
-      c\xE1c thi\u1EBFt b\u1ECB \u0111\xF3, cho ph\xE9p \u0111i\u1EC1u khi\u1EC3n
-      ch\xFAng t\u1EEB xa."
+      \u0111\u1ED9ng d\u1EF1a v\xE0o s\u1EF1 k\u1EBFt h\u1EE3p gi\u1EEFa c\xE1c th\xE0nh
+      ph\u1EA7n ch\xEDnh: c\u1EA3m bi\u1EBFn, b\u1ED9 \u0111i\u1EC1u khi\u1EC3n,
+      k\u1EBFt n\u1ED1i.\nC\xE1c thi\u1EBFt b\u1ECB th\u01B0\u1EDDng th\u1EF1c hi\u1EC7n
+      k\u1EBFt n\u1ED1i v\u1EDBi nhau th\xF4ng qua m\u1EA1ng internet (ph\u1ED5 bi\u1EBFn
+      nh\u1EA5t l\xE0 Wifi). Ng\u01B0\u1EDDi d\xF9ng s\u1EBD d\xF9ng c\xE1c b\u1ED9
+      \u0111i\u1EC1u khi\u1EC3n \u0111\u01B0\u1EE3c x\xE2y d\u1EF1ng \u0111\u1EC3
+      t\xEDch h\u1EE3p v\u1EDBi c\xE1c thi\u1EBFt b\u1ECB \u0111\xF3, cho ph\xE9p
+      \u0111i\u1EC1u khi\u1EC3n ch\xFAng t\u1EEB xa.\n\u0110\u1EC3 \u0111\u01A1n
+      gi\u1EA3n h\xF3a b\xE0i h\u1ECDc, c\xE1c thi\u1EBFt b\u1ECB khi \u0111\u01B0\u1EE3c
+      g\u1EAFn th\xE0nh c\xF4ng s\u1EBD t\u1EF1 \u0111\u1ED9ng \u0111\u01B0\u1EE3c
+      k\u1EBFt n\u1ED1i v\u1EDBi nhau v\xE0o m\u1ED9t m\u1EA1ng l\u01B0\u1EDBi internet
+      \u0111\u1EC3 giao ti\u1EBFp v\u1EDBi nhau.\n\u0110\xE2y ch\xEDnh l\xE0 ch\u1EEF
+      <b>T</b> trong Technology. "
     - "C\xE1c thi\u1EBFt b\u1ECB n\xE0y c\u0169ng c\xF3 th\u1EC3 ho\u1EA1t \u0111\u1ED9ng
       m\u1ED9t c\xE1ch t\u1EF1 \u0111\u1ED9ng th\xF4ng qua c\xE1c c\u1EA3m bi\u1EBFn.
       C\u1EA3m bi\u1EBFn c\u0169ng ph\u1EA3i \u0111\u01B0\u1EE3c k\u1EBFt n\u1ED1i
-      v\u1EDBi h\u1EC7 th\u1ED1ng b\u1EB1ng m\u1EA1ng."
-    - "C\u1EA3m bi\u1EBFn s\u1EBD ghi nh\u1EADn s\u1EF1 thay \u0111\u1ED5i t\u1EEB
-      m\xF4i tr\u01B0\u1EDDng (c\xF3 th\u1EC3 l\xE0 nhi\u1EC7t \u0111\u1ED9, \u0111\u1ED9
-      \u1EA9m, \xE1nh s\xE1ng,...). Khi c\xF3 s\u1EF1 thay \u0111\u1ED5i, c\xE1c
-      c\u1EA3m bi\u1EBFn s\u1EBD g\u1EEDi l\u1EC7nh t\u1EDBi b\u1ED9 \u0111i\u1EC1u
-      khi\u1EC3n \u0111\u1EC3 ra l\u1EC7nh cho c\xE1c thi\u1EBFt b\u1ECB (v\xED d\u1EE5
-      nh\u01B0 l\xE0 c\xE1nh c\u1EEDa trong ng\xF4i nh\xE0 n\xE0y)."
+      v\u1EDBi h\u1EC7 th\u1ED1ng b\u1EB1ng m\u1EA1ng. \nC\u1EA3m bi\u1EBFn s\u1EBD
+      ghi nh\u1EADn s\u1EF1 thay \u0111\u1ED5i t\u1EEB m\xF4i tr\u01B0\u1EDDng (c\xF3
+      th\u1EC3 l\xE0 nhi\u1EC7t \u0111\u1ED9, \u0111\u1ED9 \u1EA9m, \xE1nh s\xE1ng,...).
+      Khi c\xF3 s\u1EF1 thay \u0111\u1ED5i, c\xE1c c\u1EA3m bi\u1EBFn s\u1EBD g\u1EEDi
+      l\u1EC7nh t\u1EDBi b\u1ED9 \u0111i\u1EC1u khi\u1EC3n \u0111\u1EC3 ra l\u1EC7nh
+      cho c\xE1c thi\u1EBFt b\u1ECB (v\xED d\u1EE5 nh\u01B0 l\xE0 c\xE1nh c\u1EEDa
+      trong ng\xF4i nh\xE0 n\xE0y).\nC\xE1ch thi\u1EBFt k\u1EBF b\u1ED1 tr\xED c\xE1c
+      c\u1EA3m bi\u1EBFn v\xE0 thi\u1EBFt b\u1ECB \u0111\u1EC3 t\u1EF1 \u0111\u1ED9ng
+      h\xF3a ng\xF4i nh\xE0 c\u0169ng t\u01B0\u01A1ng \u1EE9ng v\u1EDBi ch\u1EEF
+      <b>E</b> trong Engineering. "
     - "B\u1EA1n \u0111\xE3 hi\u1EC3u qua v\u1EC1 c\xE1ch ho\u1EA1t \u0111\u1ED9ng
       c\u1EE7a m\u1ED9t h\u1EC7 th\u1ED1ng thi\u1EBFt b\u1ECB th\xF4ng minh r\u1ED3i.
       Ch\xFAng ta c\xF9ng ti\u1EBFp t\u1EE5c nh\xE9."
@@ -8857,20 +8871,26 @@ MonoBehaviour:
   - stageName: Task_Camera
     dialogues:
     - "M\u1ED9t ng\xF4i nh\xE0 th\xF4ng minh th\u01B0\u1EDDng c\xF3 th\xEAm h\u1EC7
-      th\u1ED1ng camera \u0111\u1EC3 gi\xE1m s\xE1t, \u0111\u1EA3m b\u1EA3o an ninh
-      cho ch\u1EE7 nh\xE0. B\u1EA1n h\xE3y \u1EA5n v\xE0o n\xFAt \"Camera\" \u1EDF
-      trong b\u1EA3ng \u0111i\u1EC1u khi\u1EC3n \u0111\u1EC3 chuy\u1EC3n sang ph\u1EA7n
+      th\u1ED1ng camera gi\xE1m s\xE1t, \u0111\u1EA3m b\u1EA3o an ninh cho ng\xF4i
+      nh\xE0.\nB\u1EA1n h\xE3y \u1EA5n v\xE0o n\xFAt <b>\"Camera\"</b> \u1EDF trong
+      b\u1EA3ng \u0111i\u1EC1u khi\u1EC3n \u0111\u1EC3 chuy\u1EC3n sang ph\u1EA7n
       gi\xE1m s\xE1t nh\xE9."
     - "B\u1EA1n c\xF3 th\u1EC3 th\u1EA5y camera \u0111ang gi\xE1m s\xE1t ph\u1EA7n
       n\xE0o c\u1EE7a ng\xF4i nh\xE0, v\xE0 chuy\u1EC3n \u0111\u1ED5i gi\u1EEFa nh\u1EEFng
-      camera kh\xE1c nhau. N\u1EBFu ch\xFAng b\u1ECB t\u1EAFt \u0111i, b\u1EA1n c\xF3
-      th\u1EC3 th\u1EA5y ch\u1EEF \"No Signal\" ngay tr\xEAn m\xE0n h\xECnh \u0111\u1EC3
-      ki\u1EC3m tra. B\u1EA1n c\xF3 th\u1EC3 b\u1EADt ch\xFAng l\xEAn l\u1EA1i \u1EDF
-      ph\u1EA7n \"\u0110i\u1EC1u khi\u1EC3n\" nh\xE9. "
-    - "Ng\u01B0\u1EDDi d\xF9ng c\xF3 th\u1EC3 quan s\xE1t \u0111\u01B0\u1EE3c nh\u1EEFng
-      g\xEC \u0111ang di\u1EC5n ra xung quanh ng\xF4i nh\xE0, d\u1EA3m b\u1EA3o an
-      to\xE0n cho ch\xEDnh b\u1EA3n th\xE2n t\u1EEB xa. Th\u1EADt ti\u1EC7n l\u1EE3i
-      ph\u1EA3i kh\xF4ng ? "
+      camera kh\xE1c nhau. N\u1EBFu ch\xFAng b\u1ECB t\u1EAFt \u0111i, b\u1EA1n s\u1EBD
+      th\u1EA5y ch\u1EEF \"No Signal\" ngay tr\xEAn m\xE0n h\xECnh. B\u1EA1n c\xF3
+      th\u1EC3 b\u1EADt ch\xFAng l\xEAn l\u1EA1i \u1EDF ph\u1EA7n <b>\"\u0110i\u1EC1u
+      khi\u1EC3n\"</b>. "
+    - "Ngo\xE0i ra, b\u1EA1n c\xF3 \u0111\u1EC3 \xFD th\u1EA5y m\u1EE5c l\u01B0\u1EE3ng
+      \u0111i\u1EC7n ti\xEAu th\u1EE5 \u1EDF g\xF3c b\xEAn ph\u1EA3i c\u1EE7a b\u1EA3ng
+      \u0111i\u1EC1u khi\u1EC3n kh\xF4ng ?\n\u0110\xE2y l\xE0 l\u01B0\u1EE3ng \u0111i\u1EC7n
+      n\u0103ng ti\xEAu th\u1EE5 \u01B0\u1EDBc l\u01B0\u1EE3ng khi c\xE1c thi\u1EBFt
+      b\u1ECB th\xF4ng minh ho\u1EA1t \u0111\u1ED9ng theo th\u1EDDi gian th\u1EF1c.
+      M\u1ED7i 1 gi\xE2y s\u1EBD t\u01B0\u01A1ng \u1EE9ng v\u1EDBi 6 ph\xFAt th\u1EF1c
+      t\u1EBF, \u0111\u01B0\u1EE3c t\xEDnh theo c\xF4ng th\u1EE9c:\n<b> E = P x t
+      </b>\nD\u1EF1a v\xE0o l\u01B0\u1EE3ng \u0111i\u1EC7n n\u0103ng n\xE0y b\u1EA1n
+      c\u0169ng c\xF3 th\u1EBF t\xEDnh ti\u1EC1n \u0111i\u1EC7n n\u1EEFa \u0111\xF3.\n\u0110\xE2y
+      c\u0169ng t\u01B0\u01A1ng \u1EE9ng v\u1EDBi ch\u1EEF <b>M</b> trong Mathematics. "
     waitForAction: 0
   - stageName: Outro
     dialogues:
@@ -8881,6 +8901,7 @@ MonoBehaviour:
   tutorialUI: {fileID: 799751606}
   dialogueText: {fileID: 907264964}
   nextButton: {fileID: 297417731}
+  prevButton: {fileID: 1663249779}
 --- !u!1 &582744262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1675775611489249027, guid: e5fecd5f5a84d8d4ab6ba9767bea2110, type: 3}
@@ -9719,7 +9740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ti\u1EBFp"
+  m_text: '>>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10508,6 +10529,143 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2091686426}
   m_SourcePrefab: {fileID: -5645937942226959685, guid: 32c801febe1574c4fac1e6cefeaed33f, type: 3}
+--- !u!1 &674278955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 674278956}
+  - component: {fileID: 674278958}
+  - component: {fileID: 674278957}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &674278956
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674278955}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1663249778}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &674278957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674278955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: <<
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &674278958
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674278955}
+  m_CullTransparentMesh: 1
 --- !u!1 &676747163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7553034125202512023, guid: e5fecd5f5a84d8d4ab6ba9767bea2110, type: 3}
@@ -12026,6 +12184,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757018303}
   m_CullTransparentMesh: 1
+--- !u!4 &757924815 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8481927620103681545, guid: 5ef97b9e0c0a9b141a93e8783cc952d2, type: 3}
+  m_PrefabInstance: {fileID: 1519681186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &759469945
 GameObject:
   m_ObjectHideFlags: 0
@@ -12263,6 +12426,7 @@ GameObject:
   - component: {fileID: 799751608}
   - component: {fileID: 799751607}
   - component: {fileID: 799751613}
+  - component: {fileID: 799751614}
   m_Layer: 5
   m_Name: Tutorial_UI
   m_TagString: Untagged
@@ -12385,6 +12549,7 @@ RectTransform:
   m_Children:
   - {fileID: 907264963}
   - {fileID: 297417730}
+  - {fileID: 1663249778}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12411,6 +12576,33 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &799751614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799751606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.LazyFollow
+  m_Target: {fileID: 757924815}
+  m_TargetOffset: {x: 0, y: 0, z: 0.5}
+  m_FollowInLocalSpace: 0
+  m_ApplyTargetInLocalSpace: 0
+  m_MovementSpeed: 3
+  m_MovementSpeedVariancePercentage: 0.25
+  m_SnapOnEnable: 1
+  m_PositionFollowMode: 1
+  m_MinDistanceAllowed: 1
+  m_MaxDistanceAllowed: 1.5
+  m_TimeUntilThresholdReachesMaxDistance: 3
+  m_RotationFollowMode: 1
+  m_MinAngleAllowed: 0.1
+  m_MaxAngleAllowed: 5
+  m_TimeUntilThresholdReachesMaxAngle: 3
 --- !u!1 &807325884
 GameObject:
   m_ObjectHideFlags: 0
@@ -15549,7 +15741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1015413126
 Transform:
   m_ObjectHideFlags: 0
@@ -15644,7 +15836,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -23962,6 +24154,127 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.48288497, y: 0.51386505, z: 1.0267371}
   m_Center: {x: -0.0011914719, y: -0.002385353, z: 0.54954606}
+--- !u!1 &1663249777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663249778}
+  - component: {fileID: 1663249781}
+  - component: {fileID: 1663249780}
+  - component: {fileID: 1663249779}
+  m_Layer: 5
+  m_Name: Btn_TutorialPrev
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1663249778
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663249777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 674278956}
+  m_Father: {fileID: 799751612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -392, y: -242}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1663249779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663249777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1663249780}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1663249780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663249777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1663249781
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663249777}
+  m_CullTransparentMesh: 1
 --- !u!1 &1667549040 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7939832609486668452, guid: e5fecd5f5a84d8d4ab6ba9767bea2110, type: 3}

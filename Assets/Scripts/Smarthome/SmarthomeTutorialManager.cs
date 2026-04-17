@@ -10,9 +10,9 @@ public class SmarthomeTutorialManager : MonoBehaviour
     [System.Serializable]
     public class TutorialStage
     {
-        public string stageName; // Ghi chú cho bạn dễ nhìn (VD: "1. Giới thiệu", "2. Bật Quạt")
+        public string stageName; 
         [TextArea(2, 5)] 
-        public string[] dialogues; // Danh sách các câu nói trong giai đoạn này
+        public string[] dialogues; 
         
         [Tooltip("Bật tick nếu yêu cầu người dùng PHẢI làm xong nhiệm vụ mới được đi tiếp")]
         public bool waitForAction; 
@@ -25,6 +25,7 @@ public class SmarthomeTutorialManager : MonoBehaviour
     public GameObject tutorialUI; 
     public TextMeshProUGUI dialogueText;
     public Button nextButton;
+    public Button prevButton; // THÊM MỚI: Nút quay lại
 
     private int currentStageIndex = 0;
     private int currentDialogueIndex = 0;
@@ -36,8 +37,9 @@ public class SmarthomeTutorialManager : MonoBehaviour
 
     void Start()
     {
-        // Gắn sự kiện cho nút "Tiếp tục"
+        // Gắn sự kiện cho các nút bấm
         if (nextButton != null) nextButton.onClick.AddListener(OnNextButtonClicked);
+        if (prevButton != null) prevButton.onClick.AddListener(OnPrevButtonClicked); // ĐĂNG KÝ SỰ KIỆN QUAY LẠI
         
         // Bắt đầu kịch bản
         StartStage(0);
@@ -47,7 +49,6 @@ public class SmarthomeTutorialManager : MonoBehaviour
     {
         if (stageIndex >= stages.Count)
         {
-            // HẾT KỊCH BẢN -> Chuyển sang Free Roam
             tutorialUI.SetActive(false);
             return;
         }
@@ -62,19 +63,15 @@ public class SmarthomeTutorialManager : MonoBehaviour
     {
         currentDialogueIndex++;
         
-        // Nếu đã đọc hết các câu chữ trong Giai đoạn hiện tại:
         if (currentDialogueIndex >= stages[currentStageIndex].dialogues.Length)
         {
-            // Kiểm tra xem có đang bị kẹt lại bắt làm nhiệm vụ không?
             if (stages[currentStageIndex].waitForAction)
             {
-                // Giấu nút Next đi, ép người dùng phải đi làm nhiệm vụ
                 nextButton.gameObject.SetActive(false);
-                currentDialogueIndex--; // Giữ nguyên dòng text cuối cùng (VD: "Hãy lấy cái quạt cắm vào trần nhà đi")
+                currentDialogueIndex--; 
             }
             else
             {
-                // Nếu không yêu cầu nhiệm vụ -> Chuyển thẳng sang Giai đoạn tiếp theo
                 StartStage(currentStageIndex + 1);
             }
         }
@@ -84,6 +81,29 @@ public class SmarthomeTutorialManager : MonoBehaviour
         }
     }
 
+    // HÀM XỬ LÝ KHI BẤM NÚT QUAY LẠI
+    public void OnPrevButtonClicked()
+    {
+        currentDialogueIndex--;
+
+        // Nếu lùi quá câu đầu tiên của giai đoạn hiện tại
+        if (currentDialogueIndex < 0)
+        {
+            // Nếu vẫn còn giai đoạn phía trước thì lùi về câu cuối cùng của giai đoạn đó
+            if (currentStageIndex > 0)
+            {
+                currentStageIndex--;
+                currentDialogueIndex = stages[currentStageIndex].dialogues.Length - 1;
+            }
+            else
+            {
+                // Nếu đang ở câu đầu tiên của toàn bộ kịch bản thì giữ nguyên
+                currentDialogueIndex = 0;
+            }
+        }
+        UpdateDialogueUI();
+    }
+
     private void UpdateDialogueUI()
     {
         if (dialogueText != null)
@@ -91,17 +111,21 @@ public class SmarthomeTutorialManager : MonoBehaviour
             dialogueText.text = stages[currentStageIndex].dialogues[currentDialogueIndex];
         }
 
-        // Hiện nút Next (trừ khi đang ở câu cuối và bị ép làm nhiệm vụ)
+        // Xử lý hiển thị nút Next
         bool isLastSentence = currentDialogueIndex == stages[currentStageIndex].dialogues.Length - 1;
         bool waitingForTask = stages[currentStageIndex].waitForAction;
-        
         nextButton.gameObject.SetActive(!(isLastSentence && waitingForTask));
+
+        // Xử lý hiển thị nút Prev (Ẩn đi nếu là câu đầu tiên của toàn bộ kịch bản)
+        if (prevButton != null)
+        {
+            bool isFirstOverall = (currentStageIndex == 0 && currentDialogueIndex == 0);
+            prevButton.gameObject.SetActive(!isFirstOverall);
+        }
     }
 
-    // CÁC HỆ THỐNG KHÁC SẼ GỌI HÀM NÀY KHI NGƯỜI DÙNG HOÀN THÀNH NHIỆM VỤ
     public void CompleteTask(string taskName)
     {
-        // Chỉ cho phép qua bài nếu đúng là giai đoạn này đang yêu cầu làm nhiệm vụ
         if (stages[currentStageIndex].waitForAction && stages[currentStageIndex].stageName == taskName)
         {
             StartStage(currentStageIndex + 1);

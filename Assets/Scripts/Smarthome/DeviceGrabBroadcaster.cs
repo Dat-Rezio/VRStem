@@ -33,8 +33,17 @@ public class DeviceGrabBroadcaster : MonoBehaviour
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
-        // TRẠM GÁC 1: Báo cáo đã cầm lên
-        Debug.Log($"[Broadcaster] Đã CẦM thiết bị: {gameObject.name} | Gửi đi từ khóa: '{deviceSocketType}'");
+        // THÊM CHỐT KIỂM TRA: Ai là người vừa cầm vật thể này lên?
+        // args.interactorObject chính là "Kẻ" vừa thực hiện hành động Grab.
+        if (args.interactorObject is UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor)
+        {
+            // Nếu kẻ đó là một cái Ổ Cắm -> Ra lệnh tắt Highlight để dọn dẹp và thoát hàm!
+            OnAnyDeviceReleased?.Invoke();
+            return; 
+        }
+
+        // NẾU KẺ ĐÓ KHÔNG PHẢI Ổ CẮM (Tức là tay người chơi): Bật đài phát thanh!
+        Debug.Log($"[Broadcaster] TAY NGƯỜI đã CẦM thiết bị: {gameObject.name} | Gửi đi từ khóa: '{deviceSocketType}'");
         
         if (OnAnyDeviceGrabbed == null)
         {
