@@ -8679,6 +8679,7 @@ GameObject:
   - component: {fileID: 582509701}
   - component: {fileID: 582509702}
   - component: {fileID: 582509703}
+  - component: {fileID: 582509705}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8793,11 +8794,13 @@ MonoBehaviour:
   stages:
   - stageName: Intro
     dialogues:
-    - "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi th\u1EED nghi\u1EC7m Nh\xE0
-      th\xF4ng minh.\nH\xF4m nay ch\xFAng ta s\u1EBD c\xF9ng t\xECm hi\u1EC3u v\xE0
-      m\xF4 ph\u1ECFng l\u1EA1i c\xE1ch m\u1ED9t ng\xF4i nh\xE0 th\xF4ng minh ho\u1EA1t
-      \u0111\u1ED9ng nh\xE9! \nH\xE3y c\xF9ng ti\u1EBFn v\xE0o trong \u0111\u1EC3
-      b\u1EAFt \u0111\u1EA7u kh\xE1m ph\xE1 n\xE0o!"
+    - "<color=\"yellow\">Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi th\u1EED
+      nghi\u1EC7m Nh\xE0 th\xF4ng minh.</color>\nH\xF4m nay ch\xFAng ta s\u1EBD c\xF9ng
+      t\xECm hi\u1EC3u v\xE0 m\xF4 ph\u1ECFng l\u1EA1i c\xE1ch m\u1ED9t ng\xF4i nh\xE0
+      th\xF4ng minh ho\u1EA1t \u0111\u1ED9ng nh\xE9! \nH\xE3y c\xF9ng ti\u1EBFn v\xE0o
+      trong \u0111\u1EC3 b\u1EAFt \u0111\u1EA7u kh\xE1m ph\xE1 n\xE0o!"
+    voiceovers:
+    - {fileID: 8300000, guid: c82ab309246b6ed46a6ad534abec1655, type: 3}
     waitForAction: 0
   - stageName: Task_Spawn
     dialogues:
@@ -8806,10 +8809,10 @@ MonoBehaviour:
       xa v\xE0o trong c\u0103n nh\xE0."
     - "B\u1EA1n h\xE3y s\u1EED d\u1EE5ng b\u1EA3ng \u0111i\u1EC1u khi\u1EC3n tr\xEAn
       c\xE1nh tay tr\xE1i (\u1EA5n N \u0111\u1EC3 b\u1EADt/t\u1EAFt b\u1EA3ng \u0111i\u1EC1u
-      khi\u1EC3n), b\u1EA5m v\xE0o n\xFAt <b>\"Thi\u1EBFt b\u1ECB\"</b>.\nB\u1EA1n
+      khi\u1EC3n), b\u1EA5m v\xE0o n\xFAt <color=\"yellow\">\"Thi\u1EBFt b\u1ECB\"</color>.\nB\u1EA1n
       h\xE3y \u1EA5n v\xE0o n\xFAt l\u1EA5y thi\u1EBFt b\u1ECB b\u1EA5t k\xEC \u0111\u1EC3
       l\u1EA5y thi\u1EBFt b\u1ECB \u0111\xF3 ra nh\xE9."
-    - "<b>H\xE3y c\u1EA7m th\u1EED thi\u1EBFt b\u1ECB \u0111\xF3 l\xEAn.</b>\nKhi
+    - "<color=\"yellow\">H\xE3y c\u1EA7m th\u1EED thi\u1EBFt b\u1ECB \u0111\xF3 l\xEAn.</color>\nKhi
       c\u1EA7m thi\u1EBFt b\u1ECB \u0111\xF3 l\xEAn, b\u1EA1n c\xF3 \u0111\u1EC3
       \xFD th\u1EA5y nh\u1EEFng \u1ED5 \u0111i\u1EC7n m\xE0u xanh l\xE1 xung quanh
       c\u0103n nh\xE0 kh\xF4ng. H\xE3y \u0111\u01B0a thi\u1EBFt b\u1ECB \u0111\xF3
@@ -8822,26 +8825,32 @@ MonoBehaviour:
       \u0111i\u1EC7n trong nh\xE0, t\u1EF1 \u0111\u1ED9ng t\u1EA1o th\xE0nh m\u1ED9t
       m\u1EA1ch \u0111i\u1EC7n k\xEDn. C\xE1c thi\u1EBFt b\u1ECB \u0111i\u1EC7n t\u1EED
       ph\u1EA3i lu\xF4n \u0111\u01B0\u1EE3c c\u1EA5p \u0111i\u1EC7n \u0111\u1EC3
-      ho\u1EA1t \u0111\u1ED9ng.\n\u0110\xE2y c\u0169ng t\u01B0\u01A1ng \u1EE9ng v\u1EDBi
-      ch\u1EEF <b>S</b> trong Science."
+      ho\u1EA1t \u0111\u1ED9ng.\nKi\u1EBFn th\u1EE9c n\xE0y c\u0169ng t\u01B0\u01A1ng
+      \u1EE9ng v\u1EDBi ch\u1EEF <color=\"yellow\">S</color> trong Science."
+    voiceovers:
+    - {fileID: 8300000, guid: 1a9047e470d947242960ab1d0c561686, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 8300000, guid: a7c8ce08410b53646967e74cf495d7e9, type: 3}
     waitForAction: 0
   - stageName: Task_Control
     dialogues:
     - "Sau khi g\u1EAFn xong, ch\xFAng ta h\xE3y th\u1EED b\u1EADt/t\u1EAFt c\xE1c
       thi\u1EBFt b\u1ECB.\nH\xE3y b\u1EADt b\u1ED9 \u0111i\u1EC1u khi\u1EC3n tr\xEAn
-      tay tr\xE1i l\xEAn (n\xFAt N).\n\u1EA4n v\xE0o n\xFAt <b>\"\u0110i\u1EC1u khi\u1EC3n\"</b>
-      \u1EDF g\xF3c tr\xEAn b\xEAn tr\xE1i.\nB\u1EA1n \u0111\xE3 th\u1EA5y m\u1ED9t
-      danh s\xE1ch c\xE1c thi\u1EBFt b\u1ECB ch\u01B0a. \nC\xE1c thi\u1EBFt b\u1ECB
-      \u0111\xE3 \u0111\u01B0\u1EE3c nh\xF3m s\u1EB5n th\xE0nh c\xE1c nh\xF3m kh\xE1c
-      nhau. B\u1EA1n c\xF3 th\u1EC3 cu\u1ED9n danh s\xE1ch thi\u1EBFt b\u1ECB \u0111\u1EC3
-      xem thi\u1EBFt b\u1ECB n\xE0o t\u01B0\u01A1ng t\xE1c \u0111\u01B0\u1EE3c."
+      tay tr\xE1i l\xEAn (n\xFAt N).\n\u1EA4n v\xE0o n\xFAt <color=\"yellow\">\"\u0110i\u1EC1u
+      khi\u1EC3n\"</color> \u1EDF g\xF3c tr\xEAn b\xEAn tr\xE1i.\nB\u1EA1n \u0111\xE3
+      th\u1EA5y m\u1ED9t danh s\xE1ch c\xE1c thi\u1EBFt b\u1ECB ch\u01B0a. \nC\xE1c
+      thi\u1EBFt b\u1ECB \u0111\xE3 \u0111\u01B0\u1EE3c nh\xF3m s\u1EB5n th\xE0nh
+      c\xE1c nh\xF3m kh\xE1c nhau. B\u1EA1n c\xF3 th\u1EC3 cu\u1ED9n danh s\xE1ch
+      thi\u1EBFt b\u1ECB \u0111\u1EC3 xem thi\u1EBFt b\u1ECB n\xE0o t\u01B0\u01A1ng
+      t\xE1c \u0111\u01B0\u1EE3c."
     - "H\xE3y th\u1EED \u1EA5n n\xFAt b\u1EADt/t\u1EAFt \u0111\u1EC3 b\u1EADt t\u1EAFt
       thi\u1EBFt b\u1ECB b\u1EA1n v\u1EEBa g\u1EAFn l\xEAn xem th\u1EED nh\xE9!"
     - "C\xE1c thi\u1EBFt b\u1ECB th\xF4ng minh hi\u1EC7n nay th\u01B0\u1EDDng ho\u1EA1t
       \u0111\u1ED9ng d\u1EF1a v\xE0o s\u1EF1 k\u1EBFt h\u1EE3p gi\u1EEFa c\xE1c th\xE0nh
       ph\u1EA7n ch\xEDnh: c\u1EA3m bi\u1EBFn, b\u1ED9 \u0111i\u1EC1u khi\u1EC3n,
-      k\u1EBFt n\u1ED1i.\nC\xE1c thi\u1EBFt b\u1ECB th\u01B0\u1EDDng th\u1EF1c hi\u1EC7n
-      k\u1EBFt n\u1ED1i v\u1EDBi nhau th\xF4ng qua m\u1EA1ng internet (ph\u1ED5 bi\u1EBFn
+      k\u1EBFt n\u1ED1i.\nC\xE1c thi\u1EBFt b\u1ECB th\u1EF1c hi\u1EC7n giao ti\u1EBFp
+      v\u1EDBi nhau th\xF4ng qua k\u1EBFt n\u1ED1i m\u1EA1ng (ph\u1ED5 bi\u1EBFn
       nh\u1EA5t l\xE0 Wifi). Ng\u01B0\u1EDDi d\xF9ng s\u1EBD d\xF9ng c\xE1c b\u1ED9
       \u0111i\u1EC1u khi\u1EC3n \u0111\u01B0\u1EE3c x\xE2y d\u1EF1ng \u0111\u1EC3
       t\xEDch h\u1EE3p v\u1EDBi c\xE1c thi\u1EBFt b\u1ECB \u0111\xF3, cho ph\xE9p
@@ -8850,7 +8859,7 @@ MonoBehaviour:
       g\u1EAFn th\xE0nh c\xF4ng s\u1EBD t\u1EF1 \u0111\u1ED9ng \u0111\u01B0\u1EE3c
       k\u1EBFt n\u1ED1i v\u1EDBi nhau v\xE0o m\u1ED9t m\u1EA1ng l\u01B0\u1EDBi internet
       \u0111\u1EC3 giao ti\u1EBFp v\u1EDBi nhau.\n\u0110\xE2y ch\xEDnh l\xE0 ch\u1EEF
-      <b>T</b> trong Technology. "
+      <color=\"yellow\">T</color> trong Technology. "
     - "C\xE1c thi\u1EBFt b\u1ECB n\xE0y c\u0169ng c\xF3 th\u1EC3 ho\u1EA1t \u0111\u1ED9ng
       m\u1ED9t c\xE1ch t\u1EF1 \u0111\u1ED9ng th\xF4ng qua c\xE1c c\u1EA3m bi\u1EBFn.
       C\u1EA3m bi\u1EBFn c\u0169ng ph\u1EA3i \u0111\u01B0\u1EE3c k\u1EBFt n\u1ED1i
@@ -8863,45 +8872,156 @@ MonoBehaviour:
       trong ng\xF4i nh\xE0 n\xE0y).\nC\xE1ch thi\u1EBFt k\u1EBF b\u1ED1 tr\xED c\xE1c
       c\u1EA3m bi\u1EBFn v\xE0 thi\u1EBFt b\u1ECB \u0111\u1EC3 t\u1EF1 \u0111\u1ED9ng
       h\xF3a ng\xF4i nh\xE0 c\u0169ng t\u01B0\u01A1ng \u1EE9ng v\u1EDBi ch\u1EEF
-      <b>E</b> trong Engineering. "
+      <color=\"yellow\">E</color> trong Engineering. "
     - "B\u1EA1n \u0111\xE3 hi\u1EC3u qua v\u1EC1 c\xE1ch ho\u1EA1t \u0111\u1ED9ng
       c\u1EE7a m\u1ED9t h\u1EC7 th\u1ED1ng thi\u1EBFt b\u1ECB th\xF4ng minh r\u1ED3i.
       Ch\xFAng ta c\xF9ng ti\u1EBFp t\u1EE5c nh\xE9."
+    voiceovers:
+    - {fileID: 8300000, guid: 3a7f172d4112cf446b470e2d4df3c45d, type: 3}
+    - {fileID: 0}
+    - {fileID: 8300000, guid: 2adfba9bff8c7fa499f4b72b1dd34fa0, type: 3}
+    - {fileID: 8300000, guid: 44c148fd284e39344b9224aa5badb593, type: 3}
+    - {fileID: 0}
     waitForAction: 0
   - stageName: Task_Camera
     dialogues:
     - "M\u1ED9t ng\xF4i nh\xE0 th\xF4ng minh th\u01B0\u1EDDng c\xF3 th\xEAm h\u1EC7
       th\u1ED1ng camera gi\xE1m s\xE1t, \u0111\u1EA3m b\u1EA3o an ninh cho ng\xF4i
-      nh\xE0.\nB\u1EA1n h\xE3y \u1EA5n v\xE0o n\xFAt <b>\"Camera\"</b> \u1EDF trong
-      b\u1EA3ng \u0111i\u1EC1u khi\u1EC3n \u0111\u1EC3 chuy\u1EC3n sang ph\u1EA7n
-      gi\xE1m s\xE1t nh\xE9."
+      nh\xE0.\nB\u1EA1n h\xE3y \u1EA5n v\xE0o n\xFAt <color=\"yellow\">\"Camera\"</color>
+      \u1EDF trong b\u1EA3ng \u0111i\u1EC1u khi\u1EC3n \u0111\u1EC3 chuy\u1EC3n sang
+      ph\u1EA7n gi\xE1m s\xE1t nh\xE9."
     - "B\u1EA1n c\xF3 th\u1EC3 th\u1EA5y camera \u0111ang gi\xE1m s\xE1t ph\u1EA7n
       n\xE0o c\u1EE7a ng\xF4i nh\xE0, v\xE0 chuy\u1EC3n \u0111\u1ED5i gi\u1EEFa nh\u1EEFng
       camera kh\xE1c nhau. N\u1EBFu ch\xFAng b\u1ECB t\u1EAFt \u0111i, b\u1EA1n s\u1EBD
       th\u1EA5y ch\u1EEF \"No Signal\" ngay tr\xEAn m\xE0n h\xECnh. B\u1EA1n c\xF3
-      th\u1EC3 b\u1EADt ch\xFAng l\xEAn l\u1EA1i \u1EDF ph\u1EA7n <b>\"\u0110i\u1EC1u
-      khi\u1EC3n\"</b>. "
+      th\u1EC3 b\u1EADt ch\xFAng l\xEAn l\u1EA1i \u1EDF ph\u1EA7n <color=\"yellow\">\"\u0110i\u1EC1u
+      khi\u1EC3n\"</color>. "
     - "Ngo\xE0i ra, b\u1EA1n c\xF3 \u0111\u1EC3 \xFD th\u1EA5y m\u1EE5c l\u01B0\u1EE3ng
       \u0111i\u1EC7n ti\xEAu th\u1EE5 \u1EDF g\xF3c b\xEAn ph\u1EA3i c\u1EE7a b\u1EA3ng
       \u0111i\u1EC1u khi\u1EC3n kh\xF4ng ?\n\u0110\xE2y l\xE0 l\u01B0\u1EE3ng \u0111i\u1EC7n
       n\u0103ng ti\xEAu th\u1EE5 \u01B0\u1EDBc l\u01B0\u1EE3ng khi c\xE1c thi\u1EBFt
       b\u1ECB th\xF4ng minh ho\u1EA1t \u0111\u1ED9ng theo th\u1EDDi gian th\u1EF1c.
       M\u1ED7i 1 gi\xE2y s\u1EBD t\u01B0\u01A1ng \u1EE9ng v\u1EDBi 6 ph\xFAt th\u1EF1c
-      t\u1EBF, \u0111\u01B0\u1EE3c t\xEDnh theo c\xF4ng th\u1EE9c:\n<b> E = P x t
-      </b>\nD\u1EF1a v\xE0o l\u01B0\u1EE3ng \u0111i\u1EC7n n\u0103ng n\xE0y b\u1EA1n
-      c\u0169ng c\xF3 th\u1EBF t\xEDnh ti\u1EC1n \u0111i\u1EC7n n\u1EEFa \u0111\xF3.\n\u0110\xE2y
-      c\u0169ng t\u01B0\u01A1ng \u1EE9ng v\u1EDBi ch\u1EEF <b>M</b> trong Mathematics. "
+      t\u1EBF, \u0111\u01B0\u1EE3c t\xEDnh theo c\xF4ng th\u1EE9c:\n<color=\"yellow\">
+      E = P x t </color>\nD\u1EF1a v\xE0o l\u01B0\u1EE3ng \u0111i\u1EC7n n\u0103ng
+      n\xE0y b\u1EA1n c\u0169ng c\xF3 th\u1EBF t\xEDnh ti\u1EC1n \u0111i\u1EC7n n\u1EEFa
+      \u0111\xF3.\n\u0110\xE2y c\u0169ng t\u01B0\u01A1ng \u1EE9ng v\u1EDBi ch\u1EEF
+      <color=\"yellow\">M</color> trong Mathematics. "
+    voiceovers:
+    - {fileID: 8300000, guid: 679237d47641b0e438b2dce8fc68131b, type: 3}
+    - {fileID: 0}
+    - {fileID: 8300000, guid: 8122d237c54e3bc4bb9a1905003e0562, type: 3}
     waitForAction: 0
   - stageName: Outro
     dialogues:
     - "V\u1EADy l\xE0 ch\xFAng ta \u0111\xE3 c\xF9ng t\xECm hi\u1EC3u xong v\u1EC1
       c\xE1ch ho\u1EA1t \u0111\u1ED9ng c\u1EE7a ng\xF4i nh\xE0 th\xF4ng minh r\u1ED3i.
       H\xE3y t\u1EF1 do kh\xE1m ph\xE1 th\u1EED nh\xE9!"
+    voiceovers:
+    - {fileID: 8300000, guid: cd6352d1c2308b44a881a3b0088248c6, type: 3}
     waitForAction: 0
   tutorialUI: {fileID: 799751606}
   dialogueText: {fileID: 907264964}
   nextButton: {fileID: 297417731}
   prevButton: {fileID: 1663249779}
+  audioSource: {fileID: 582509705}
+--- !u!82 &582509705
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582509697}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &582744262 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1675775611489249027, guid: e5fecd5f5a84d8d4ab6ba9767bea2110, type: 3}
@@ -9074,6 +9194,10 @@ PrefabInstance:
     - target: {fileID: -342722156604491792, guid: e5fecd5f5a84d8d4ab6ba9767bea2110, type: 3}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 59460795166628590, guid: e5fecd5f5a84d8d4ab6ba9767bea2110, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1358138772842593671, guid: e5fecd5f5a84d8d4ab6ba9767bea2110, type: 3}
       propertyPath: m_ReceiveGI
@@ -12447,7 +12571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12599,7 +12723,7 @@ MonoBehaviour:
   m_MinDistanceAllowed: 1
   m_MaxDistanceAllowed: 1.5
   m_TimeUntilThresholdReachesMaxDistance: 3
-  m_RotationFollowMode: 1
+  m_RotationFollowMode: 2
   m_MinAngleAllowed: 0.1
   m_MaxAngleAllowed: 5
   m_TimeUntilThresholdReachesMaxAngle: 3

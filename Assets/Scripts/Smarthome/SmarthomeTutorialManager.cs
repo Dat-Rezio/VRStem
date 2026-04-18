@@ -14,18 +14,24 @@ public class SmarthomeTutorialManager : MonoBehaviour
         [TextArea(2, 5)] 
         public string[] dialogues; 
         
-        [Tooltip("Bật tick nếu yêu cầu người dùng PHẢI làm xong nhiệm vụ mới được đi tiếp")]
+        // THÊM MỚI: Danh sách file âm thanh tương ứng với từng câu thoại
+        [Tooltip("Kéo thả file mp3/wav tương ứng với từng câu Text ở trên vào đây")]
+        public AudioClip[] voiceovers; 
+        
         public bool waitForAction; 
     }
 
     [Header("--- Cấu hình Kịch bản ---")]
     public List<TutorialStage> stages;
 
-    [Header("--- Cấu hình UI ---")]
+    [Header("--- Cấu hình UI & Âm thanh ---")]
     public GameObject tutorialUI; 
     public TextMeshProUGUI dialogueText;
     public Button nextButton;
-    public Button prevButton; // THÊM MỚI: Nút quay lại
+    public Button prevButton; 
+    
+    // THÊM MỚI: Nguồn phát âm thanh
+    public AudioSource audioSource; 
 
     private int currentStageIndex = 0;
     private int currentDialogueIndex = 0;
@@ -37,11 +43,9 @@ public class SmarthomeTutorialManager : MonoBehaviour
 
     void Start()
     {
-        // Gắn sự kiện cho các nút bấm
         if (nextButton != null) nextButton.onClick.AddListener(OnNextButtonClicked);
-        if (prevButton != null) prevButton.onClick.AddListener(OnPrevButtonClicked); // ĐĂNG KÝ SỰ KIỆN QUAY LẠI
+        if (prevButton != null) prevButton.onClick.AddListener(OnPrevButtonClicked); 
         
-        // Bắt đầu kịch bản
         StartStage(0);
     }
 
@@ -50,6 +54,7 @@ public class SmarthomeTutorialManager : MonoBehaviour
         if (stageIndex >= stages.Count)
         {
             tutorialUI.SetActive(false);
+            if (audioSource != null) audioSource.Stop(); // Tắt tiếng khi xong hướng dẫn
             return;
         }
 
@@ -81,15 +86,12 @@ public class SmarthomeTutorialManager : MonoBehaviour
         }
     }
 
-    // HÀM XỬ LÝ KHI BẤM NÚT QUAY LẠI
     public void OnPrevButtonClicked()
     {
         currentDialogueIndex--;
 
-        // Nếu lùi quá câu đầu tiên của giai đoạn hiện tại
         if (currentDialogueIndex < 0)
         {
-            // Nếu vẫn còn giai đoạn phía trước thì lùi về câu cuối cùng của giai đoạn đó
             if (currentStageIndex > 0)
             {
                 currentStageIndex--;
@@ -97,7 +99,6 @@ public class SmarthomeTutorialManager : MonoBehaviour
             }
             else
             {
-                // Nếu đang ở câu đầu tiên của toàn bộ kịch bản thì giữ nguyên
                 currentDialogueIndex = 0;
             }
         }
@@ -106,21 +107,46 @@ public class SmarthomeTutorialManager : MonoBehaviour
 
     private void UpdateDialogueUI()
     {
+        // 1. Cập nhật Text
         if (dialogueText != null)
         {
             dialogueText.text = stages[currentStageIndex].dialogues[currentDialogueIndex];
         }
 
-        // Xử lý hiển thị nút Next
+        // 2. THÊM MỚI: Xử lý phát âm thanh
+        PlayCurrentVoiceover();
+
+        // 3. Xử lý nút bấm
         bool isLastSentence = currentDialogueIndex == stages[currentStageIndex].dialogues.Length - 1;
         bool waitingForTask = stages[currentStageIndex].waitForAction;
         nextButton.gameObject.SetActive(!(isLastSentence && waitingForTask));
 
-        // Xử lý hiển thị nút Prev (Ẩn đi nếu là câu đầu tiên của toàn bộ kịch bản)
         if (prevButton != null)
         {
             bool isFirstOverall = (currentStageIndex == 0 && currentDialogueIndex == 0);
             prevButton.gameObject.SetActive(!isFirstOverall);
+        }
+    }
+
+    // THÊM MỚI: Hàm phát âm thanh an toàn
+    private void PlayCurrentVoiceover()
+    {
+        if (audioSource == null) return;
+
+        // Dừng câu nói cũ (nếu người chơi bấm Next quá nhanh)
+        audioSource.Stop();
+
+        // Kiểm tra xem giai đoạn này có file âm thanh không, và mảng âm thanh có đủ độ dài không
+        // (Phòng trường hợp bạn lỡ gõ 3 câu Text nhưng mới chỉ kéo vào 2 file Audio)
+        if (stages[currentStageIndex].voiceovers != null && 
+            currentDialogueIndex < stages[currentStageIndex].voiceovers.Length)
+        {
+            AudioClip clip = stages[currentStageIndex].voiceovers[currentDialogueIndex];
+            if (clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
         }
     }
 
