@@ -10,21 +10,28 @@ public class SmarthomeTutorialManager : MonoBehaviour
     [System.Serializable]
     public class TutorialStage
     {
-        public string stageName; // Ghi chú cho bạn dễ nhìn (VD: "1. Giới thiệu", "2. Bật Quạt")
+        public string stageName; 
         [TextArea(2, 5)] 
-        public string[] dialogues; // Danh sách các câu nói trong giai đoạn này
+        public string[] dialogues; 
         
-        [Tooltip("Bật tick nếu yêu cầu người dùng PHẢI làm xong nhiệm vụ mới được đi tiếp")]
+        // THÊM MỚI: Danh sách file âm thanh tương ứng với từng câu thoại
+        [Tooltip("Kéo thả file mp3/wav tương ứng với từng câu Text ở trên vào đây")]
+        public AudioClip[] voiceovers; 
+        
         public bool waitForAction; 
     }
 
     [Header("--- Cấu hình Kịch bản ---")]
     public List<TutorialStage> stages;
 
-    [Header("--- Cấu hình UI ---")]
+    [Header("--- Cấu hình UI & Âm thanh ---")]
     public GameObject tutorialUI; 
     public TextMeshProUGUI dialogueText;
     public Button nextButton;
+    public Button prevButton; 
+    
+    // THÊM MỚI: Nguồn phát âm thanh
+    public AudioSource audioSource; 
 
     private int currentStageIndex = 0;
     private int currentDialogueIndex = 0;
@@ -36,10 +43,9 @@ public class SmarthomeTutorialManager : MonoBehaviour
 
     void Start()
     {
-        // Gắn sự kiện cho nút "Tiếp tục"
         if (nextButton != null) nextButton.onClick.AddListener(OnNextButtonClicked);
+        if (prevButton != null) prevButton.onClick.AddListener(OnPrevButtonClicked); 
         
-        // Bắt đầu kịch bản
         StartStage(0);
     }
 
@@ -47,8 +53,8 @@ public class SmarthomeTutorialManager : MonoBehaviour
     {
         if (stageIndex >= stages.Count)
         {
-            // HẾT KỊCH BẢN -> Chuyển sang Free Roam
             tutorialUI.SetActive(false);
+            if (audioSource != null) audioSource.Stop(); // Tắt tiếng khi xong hướng dẫn
             return;
         }
 
@@ -62,19 +68,15 @@ public class SmarthomeTutorialManager : MonoBehaviour
     {
         currentDialogueIndex++;
         
-        // Nếu đã đọc hết các câu chữ trong Giai đoạn hiện tại:
         if (currentDialogueIndex >= stages[currentStageIndex].dialogues.Length)
         {
-            // Kiểm tra xem có đang bị kẹt lại bắt làm nhiệm vụ không?
             if (stages[currentStageIndex].waitForAction)
             {
-                // Giấu nút Next đi, ép người dùng phải đi làm nhiệm vụ
                 nextButton.gameObject.SetActive(false);
-                currentDialogueIndex--; // Giữ nguyên dòng text cuối cùng (VD: "Hãy lấy cái quạt cắm vào trần nhà đi")
+                currentDialogueIndex--; 
             }
             else
             {
-                // Nếu không yêu cầu nhiệm vụ -> Chuyển thẳng sang Giai đoạn tiếp theo
                 StartStage(currentStageIndex + 1);
             }
         }
@@ -84,24 +86,72 @@ public class SmarthomeTutorialManager : MonoBehaviour
         }
     }
 
+    public void OnPrevButtonClicked()
+    {
+        currentDialogueIndex--;
+
+        if (currentDialogueIndex < 0)
+        {
+            if (currentStageIndex > 0)
+            {
+                currentStageIndex--;
+                currentDialogueIndex = stages[currentStageIndex].dialogues.Length - 1;
+            }
+            else
+            {
+                currentDialogueIndex = 0;
+            }
+        }
+        UpdateDialogueUI();
+    }
+
     private void UpdateDialogueUI()
     {
+        // 1. Cập nhật Text
         if (dialogueText != null)
         {
             dialogueText.text = stages[currentStageIndex].dialogues[currentDialogueIndex];
         }
 
-        // Hiện nút Next (trừ khi đang ở câu cuối và bị ép làm nhiệm vụ)
+        // 2. THÊM MỚI: Xử lý phát âm thanh
+        PlayCurrentVoiceover();
+
+        // 3. Xử lý nút bấm
         bool isLastSentence = currentDialogueIndex == stages[currentStageIndex].dialogues.Length - 1;
         bool waitingForTask = stages[currentStageIndex].waitForAction;
-        
         nextButton.gameObject.SetActive(!(isLastSentence && waitingForTask));
+
+        if (prevButton != null)
+        {
+            bool isFirstOverall = (currentStageIndex == 0 && currentDialogueIndex == 0);
+            prevButton.gameObject.SetActive(!isFirstOverall);
+        }
     }
 
-    // CÁC HỆ THỐNG KHÁC SẼ GỌI HÀM NÀY KHI NGƯỜI DÙNG HOÀN THÀNH NHIỆM VỤ
+    // THÊM MỚI: Hàm phát âm thanh an toàn
+    private void PlayCurrentVoiceover()
+    {
+        if (audioSource == null) return;
+
+        // Dừng câu nói cũ (nếu người chơi bấm Next quá nhanh)
+        audioSource.Stop();
+
+        // Kiểm tra xem giai đoạn này có file âm thanh không, và mảng âm thanh có đủ độ dài không
+        // (Phòng trường hợp bạn lỡ gõ 3 câu Text nhưng mới chỉ kéo vào 2 file Audio)
+        if (stages[currentStageIndex].voiceovers != null && 
+            currentDialogueIndex < stages[currentStageIndex].voiceovers.Length)
+        {
+            AudioClip clip = stages[currentStageIndex].voiceovers[currentDialogueIndex];
+            if (clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+        }
+    }
+
     public void CompleteTask(string taskName)
     {
-        // Chỉ cho phép qua bài nếu đúng là giai đoạn này đang yêu cầu làm nhiệm vụ
         if (stages[currentStageIndex].waitForAction && stages[currentStageIndex].stageName == taskName)
         {
             StartStage(currentStageIndex + 1);

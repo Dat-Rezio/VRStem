@@ -455,7 +455,6 @@ MonoBehaviour:
   spinSpeed: 1000
   rotationAxis: {x: 0, y: 0, z: 1}
   securityCamera: {fileID: 0}
-  noSignalTexts: []
   doorHinge: {fileID: 0}
   openAngle: 90
   swingSpeed: 3
