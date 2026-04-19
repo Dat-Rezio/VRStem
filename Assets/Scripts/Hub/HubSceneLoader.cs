@@ -10,6 +10,13 @@ public class HubSceneLoader : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void ReloadScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log("Tải lại cảnh hiện tại: " + currentSceneName);
+        SceneManager.LoadScene(currentSceneName);
+    }
+
     // Hàm tiện ích để thoát game
     public void QuitGame()
     {
