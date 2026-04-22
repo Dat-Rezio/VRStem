@@ -39,7 +39,7 @@ public class Visualization : MonoBehaviour
         // Trục pháp tuyến (nửa dưới)
         Vector3 reverseN = -n;
 
-        // 1. Vẽ đường nét đứt Pháp Tuyến (N - N')
+        // 1. Vẽ đường Pháp Tuyến (N - N')
         if (normalLine != null)
         {
             normalLine.positionCount = 2;

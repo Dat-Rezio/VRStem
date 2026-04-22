@@ -54,7 +54,6 @@ public class SequenceSoundManager : MonoBehaviour
 
             currentIndex++;
 
-            //  CHỈ PAUSE SAU INTRO nếu chưa bấm nút
             if (!hasStartedEnvironment && currentIndex >= 2)
             {
                 yield return new WaitUntil(() => hasStartedEnvironment);
@@ -64,8 +63,6 @@ public class SequenceSoundManager : MonoBehaviour
 
     void CheckAndShowText(int index)
     {
-        // Theo yêu cầu của bạn: Text hiện ở index 4, 5, 6, 7
-        // Chúng ta trừ đi 4 để khớp với mảng stemTexts (0, 1, 2, 3)
         int textIndex = index - 4;
 
         if (textIndex >= 0 && textIndex < stemTexts.Length)
