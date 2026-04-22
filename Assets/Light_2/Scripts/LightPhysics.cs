@@ -16,7 +16,7 @@ public class LightPhysics : MonoBehaviour
     public Material dispersionBeamMaterial;
 
     [Header("Dispersion Strength")]
-    public float dispersionStrength = -0.05f; // Giảm xuống để dải màu ko bị xòe quá gắt gây gãy khúc
+    public float dispersionStrength = -0.025f; // Giảm xuống để dải màu ko bị xòe quá gắt gây gãy khúc
 
     [Header("Volumetric Effect (Hiệu ứng ánh sáng)")]
     [Tooltip("Cường độ sáng chói (HDR)")]
@@ -220,11 +220,6 @@ public class LightPhysics : MonoBehaviour
 
                     break; // Cắt đứt hoàn toàn tia Trắng tại điểm Thoát, nhường sân khấu vinh quang cho 7 tia Tán sắc
                 }
-                // else if (hit.collider.CompareTag("Mirror"))
-                // {
-                //     Vector3 reflectDir = Vector3.Reflect(incomingDir, normal);
-                //     ray = new Ray(hit.point + reflectDir * 0.001f, reflectDir);
-                // }
                 else if (hit.collider.CompareTag("Water"))
                 {
                     RefractiveMaterial rm = hit.collider.GetComponent<RefractiveMaterial>();
@@ -323,13 +318,11 @@ public class LightPhysics : MonoBehaviour
         {
             float n = refractiveIndices[i];
 
-            // Tính tia màu thoát ra khỏi lăng kính (Từ môi trường thủy tinh (n) dội ra Không khí (1.0))
             Vector3 exitDir = Refract(internalDir, exitNormal, n, 1.0f).normalized;
 
-            // Kích hoạt Xòe Góc Quạt nhẹ nhàng để dải màu tách bạch mà vẫn giữ được hướng chính của tia
             float offsetFactor = (i - 3f) / 3f;
             Quaternion rot = Quaternion.AngleAxis(
-                -offsetFactor * dispersionStrength * 90f, // Giảm từ 180 xuống 90 để tia đi thẳng hơn
+                -offsetFactor * dispersionStrength * 90f,
                 dispersionAxis
             );
             exitDir = rot * exitDir;
@@ -348,12 +341,6 @@ public class LightPhysics : MonoBehaviour
                     Vector3 currentDir = colorRay.direction;
                     Vector3 hitNormal = colorHit.normal;
 
-                    // if (colorHit.collider.CompareTag("Mirror"))
-                    // {
-                    //     Vector3 reflect = Vector3.Reflect(currentDir, hitNormal);
-                    //     colorRay = new Ray(colorHit.point + reflect * 0.001f, reflect);
-                    // }
-                    // else if (
                     if (
                         colorHit.collider.CompareTag("Prism")
                         || colorHit.collider.CompareTag("Water")

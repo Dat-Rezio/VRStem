@@ -12,16 +12,16 @@ public class IsolatedGlowManager : MonoBehaviour
     [Header("2. Fake Bloom (Quầng sáng giả lập)")]
     [Tooltip("Dùng Material của tia sáng (URP/Unlit, Transparent Additive)")]
     public Material haloMaterial;
-    public float haloSize = 1.3f;
+    public float haloSize = 0.5f;
 
     [Range(0, 1)]
-    public float haloAlpha = 0.4f;
+    public float haloAlpha = 0.5f;
 
     [Header("3. Animation (Hiệu ứng nhịp thở)")]
     public bool isPulse = false;
-    public float pulseSpeed = 2f;
-    public float pulseMin = 0.7f;
-    public float pulseMax = 1.3f;
+    public float pulseSpeed = 5f;
+    public float pulseMin = 1f;
+    public float pulseMax = 5f;
 
     private LineRenderer haloRenderer;
     private Material instancedMeshMat;
@@ -88,7 +88,7 @@ public class IsolatedGlowManager : MonoBehaviour
 
             haloRenderer.startColor = haloRenderer.endColor = finalHaloColor;
 
-            // QUAN TRỌNG: Luôn quay mặt về phía Camera để nhìn giống hiệu ứng Bloom thật
+            // Luôn quay mặt về phía Camera để nhìn giống hiệu ứng Bloom thật
             if (Camera.main != null)
             {
                 haloRenderer.transform.LookAt(Camera.main.transform);

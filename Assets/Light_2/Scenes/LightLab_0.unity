@@ -996,6 +996,23 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5049093574157648177, guid: b8d12d557e435484faaea4b8e3398f02, type: 3}
   m_PrefabInstance: {fileID: 1727038613}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &367356118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6660788820284304993, guid: 79a7d4794c485b8458beebba3b9c8bcc, type: 3}
+  m_PrefabInstance: {fileID: 474402145}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &367356122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367356118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa4f675a67d40646a65062140ee9a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BillboardText
 --- !u!1001 &391026805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1320,6 +1337,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8293033646262969550, guid: 79a7d4794c485b8458beebba3b9c8bcc, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8803654317571293018, guid: 79a7d4794c485b8458beebba3b9c8bcc, type: 3}
       propertyPath: m_text
       value: "B\u1EA5m v\xE0o \u0111\xE2y"
@@ -1331,7 +1352,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6660788820284304993, guid: 79a7d4794c485b8458beebba3b9c8bcc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 367356122}
   m_SourcePrefab: {fileID: 100100000, guid: 79a7d4794c485b8458beebba3b9c8bcc, type: 3}
 --- !u!224 &474402146 stripped
 RectTransform:
