@@ -79,16 +79,21 @@ public class SolarSystemFocus : MonoBehaviour
             currentPlanetVisual.ShowModel();
             _startPivotPos = pivot.position;
             showModel = true;
-            planetSelectable.orbit.SetRingVisible(false);
+            if (currentPlanetVisual.planetName == "Sun") return;
+            if(planetSelectable != null) // TH là sun
+                planetSelectable.orbit.SetRingVisible(false);
         }
         else if (solarRoot.lossyScale.x < modelAppearScale && showModel)
         {
             currentPlanetVisual.ShowMarker();
             showModel = false;
-            
+
             if (currentPlanetVisual.planetName == "Sun") return;
-            planetSelectable.ResetFocus();
-            planetSelectable.orbit.SetRingVisible(true);
+            if (planetSelectable != null) // TH là sun
+            {
+                planetSelectable.ResetFocus();
+                planetSelectable.orbit.SetRingVisible(true);
+            }
         }
 
         if (pivot.lossyScale.x >= questionAppearScale && !showInfor)
