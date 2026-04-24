@@ -357,4 +357,18 @@ public class PlanetQuiz : MonoBehaviour
     }
 
     public bool IsAnswered(string planetName) => answeredPlanets.Contains(planetName);
+    public void ResetQuiz()
+{
+    answeredPlanets.Clear();
+    _isAnswering = false;
+    HideUI();
+
+    if (_feedbackText != null)
+        _feedbackText.text = "";
+
+    // Reset label tất cả hành tinh về "?"
+    PlanetVisual[] allVisuals = FindObjectsOfType<PlanetVisual>();
+    foreach (var v in allVisuals)
+        v.ShowQuestionMark();
+}
 }
