@@ -7798,6 +7798,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2835627413689280392, guid: b8d12d557e435484faaea4b8e3398f02, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5049093574157648177, guid: b8d12d557e435484faaea4b8e3398f02, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7864,7 +7868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5049093574157648177, guid: b8d12d557e435484faaea4b8e3398f02, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.05
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5049093574157648177, guid: b8d12d557e435484faaea4b8e3398f02, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10732,6 +10736,10 @@ PrefabInstance:
     - target: {fileID: 9031832140949950615, guid: 68aa4c6c3310da941a1eea234b903e1b, type: 3}
       propertyPath: m_Name
       value: SpawnManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9031832140949950615, guid: 68aa4c6c3310da941a1eea234b903e1b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5,6 +5,7 @@ public class DeviceSpawner : MonoBehaviour
     [Header("Cấu hình tạo thiết bị")]
     public GameObject wallLampPrefab; // Kéo Prefab Bóng Đèn vào đây
     public GameObject ceillingFanPrefab;   // Kéo Prefab Quạt vào đây
+    public GameObject ceilingFanLampPrefab;
     public Transform spawnPoint;   // Một vị trí lơ lửng trên bàn để đồ vật rơi ra
 
     public void SpawnLight()
@@ -15,5 +16,10 @@ public class DeviceSpawner : MonoBehaviour
     public void SpawnFan()
     {
         Instantiate(ceillingFanPrefab, spawnPoint.position, spawnPoint.rotation);
+    }
+
+    public void SpawnFanLamp()
+    {
+        Instantiate(ceilingFanLampPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }

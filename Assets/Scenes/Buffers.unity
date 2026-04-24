@@ -5830,7 +5830,6 @@ GameObject:
   - component: {fileID: 1730170876}
   - component: {fileID: 1730170875}
   - component: {fileID: 1730170877}
-  - component: {fileID: 1730170878}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5909,20 +5908,6 @@ MonoBehaviour:
     reactant1: NaOH
     reactant2: NH4Cl
     product1: NH3
---- !u!114 &1730170878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1730170874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d843a9448160e7f48940c29a5e33de99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainMenuToggle
-  menuCanvas: {fileID: 1449878849}
-  toggleAction: {fileID: 4116954447336496447, guid: b6d5c44ebe3244b7692e81ae8265eb22, type: 3}
 --- !u!1001 &1736795268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7108,7 +7093,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8481927620190115466, guid: 5ef97b9e0c0a9b141a93e8783cc952d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1449878850}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 210308217943590401, guid: 5ef97b9e0c0a9b141a93e8783cc952d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2133510546}
   m_SourcePrefab: {fileID: 100100000, guid: 5ef97b9e0c0a9b141a93e8783cc952d2, type: 3}
 --- !u!1 &1993472983 stripped
 GameObject:
@@ -7699,6 +7687,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2133510544 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 210308217943590401, guid: 5ef97b9e0c0a9b141a93e8783cc952d2, type: 3}
+  m_PrefabInstance: {fileID: 1980910971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2133510546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133510544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d843a9448160e7f48940c29a5e33de99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuToggle
+  menuCanvas: {fileID: 1449878849}
+  toggleAction: {fileID: 4116954447336496447, guid: b6d5c44ebe3244b7692e81ae8265eb22, type: 3}
 --- !u!23 &15302736538864351
 MeshRenderer:
   m_ObjectHideFlags: 0
