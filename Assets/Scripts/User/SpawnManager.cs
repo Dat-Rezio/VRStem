@@ -9,34 +9,20 @@ public class PlayerSpawner : MonoBehaviour
 
     void Start()
     {
-        // Bắt đầu tiến trình đợi thay vì chạy ngay lập tức
         StartCoroutine(SpawnPlayerRoutine());
     }
 
     IEnumerator SpawnPlayerRoutine()
     {
-        // Đợi 0.1 giây để đảm bảo hệ thống tracking của kính VR đã hoàn toàn kích hoạt
+        // Tăng thời gian lên 0.5s để kính Quest kịp đồng bộ tracking khi vừa ấn Play
         yield return new WaitForSeconds(0.1f); 
 
         if (xrOrigin != null && spawnPoint != null)
         {
-            // 1. Tìm xem có CharacterController không, nếu có thì tạm tắt đi
-            CharacterController cc = xrOrigin.GetComponent<CharacterController>();
-            if (cc != null) 
-            {
-                cc.enabled = false;
-            }
-
-            // 2. Dịch chuyển XR Origin về đúng vị trí SpawnPoint
+            // Gọi thẳng lệnh dịch chuyển, KHÔNG can thiệp vào CharacterController nữa
+            // Việc này giúp hệ thống XRBodyTransformer không bị gián đoạn và báo lỗi
             xrOrigin.MoveCameraToWorldLocation(spawnPoint.position);
             xrOrigin.MatchOriginUpCameraForward(spawnPoint.up, spawnPoint.forward);
-
-            // 3. Đợi thêm 1 frame cho vật lý ổn định rồi bật lại Character Controller
-            yield return new WaitForEndOfFrame();
-            if (cc != null) 
-            {
-                cc.enabled = true;
-            }
         }
     }
 }
