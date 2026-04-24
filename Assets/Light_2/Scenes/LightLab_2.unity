@@ -3385,7 +3385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuToggle
   menuCanvas: {fileID: 1906169468}
-  toggleAction: {fileID: 4116954447336496447, guid: b6d5c44ebe3244b7692e81ae8265eb22, type: 3}
+  toggleAction: {fileID: 6545815874098065249, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1001 &1619827188
 PrefabInstance:
   m_ObjectHideFlags: 0

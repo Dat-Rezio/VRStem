@@ -7404,6 +7404,7 @@ GameObject:
   - component: {fileID: 2120878785}
   - component: {fileID: 2120878791}
   - component: {fileID: 2120878790}
+  - component: {fileID: 2120878792}
   m_Layer: 5
   m_Name: TutorialBoard (1)
   m_TagString: Untagged
@@ -7687,6 +7688,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2120878792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120878784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &2133510544 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 210308217943590401, guid: 5ef97b9e0c0a9b141a93e8783cc952d2, type: 3}
@@ -7705,7 +7725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuToggle
   menuCanvas: {fileID: 1449878849}
-  toggleAction: {fileID: 4116954447336496447, guid: b6d5c44ebe3244b7692e81ae8265eb22, type: 3}
+  toggleAction: {fileID: 6545815874098065249, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!23 &15302736538864351
 MeshRenderer:
   m_ObjectHideFlags: 0
