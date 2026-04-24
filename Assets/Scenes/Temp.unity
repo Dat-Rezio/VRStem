@@ -13660,6 +13660,7 @@ GameObject:
   - component: {fileID: 1642974710}
   - component: {fileID: 1642974709}
   - component: {fileID: 1642974711}
+  - component: {fileID: 1642974712}
   m_Layer: 5
   m_Name: ExplanationCanvas
   m_TagString: Untagged
@@ -13878,6 +13879,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PanelSwitcher
   currentPanel: {fileID: 1642974704}
   nextPanel: {fileID: 114700823}
+--- !u!114 &1642974712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642974704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &1650116170
 GameObject:
   m_ObjectHideFlags: 0
@@ -13945,7 +13965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuToggle
   menuCanvas: {fileID: 1199488616}
-  toggleAction: {fileID: 4116954447336496447, guid: b6d5c44ebe3244b7692e81ae8265eb22, type: 3}
+  toggleAction: {fileID: 6545815874098065249, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1001 &1656330672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15356,6 +15376,7 @@ GameObject:
   - component: {fileID: 1833385272}
   - component: {fileID: 1833385277}
   - component: {fileID: 1833385276}
+  - component: {fileID: 1833385278}
   m_Layer: 5
   m_Name: TruyenNhiet
   m_TagString: Untagged
@@ -15560,6 +15581,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PanelAudioPlayer
   audioSource: {fileID: 1833385276}
   audioClip: {fileID: 8300000, guid: b6650a3fea916d84d8f80aa2fd8b4e11, type: 3}
+--- !u!114 &1833385278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833385271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!4 &1838685459 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1251870351769076396, guid: b59fea994808d2a469298c4f936aaec1, type: 3}
