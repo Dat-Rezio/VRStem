@@ -978,7 +978,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Toogle Menu",
+                    "name": "Toggle Menu",
                     "type": "Button",
                     "id": "8570a3f8-dbd0-44dc-9673-607bd07b0114",
                     "expectedControlType": "",
@@ -987,7 +987,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Toogle Smarthome Menu",
+                    "name": "Toggle Smarthome Menu",
                     "type": "Button",
                     "id": "22a9e852-7176-458d-8538-c259f949689c",
                     "expectedControlType": "",
@@ -1312,7 +1312,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Toogle Menu",
+                    "action": "Toggle Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7bf7b5d6-e896-4b1a-9393-67b7f4c9758b",
+                    "path": "<XRController>{LeftHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1323,7 +1334,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Toogle Smarthome Menu",
+                    "action": "Toggle Smarthome Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

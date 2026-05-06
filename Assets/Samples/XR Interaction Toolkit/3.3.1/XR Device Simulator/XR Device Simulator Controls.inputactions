@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "XR Device Simulator Controls",
     "maps": [
         {
@@ -225,7 +226,7 @@
                     "name": "Toggle Device Position Target",
                     "type": "Button",
                     "id": "15cd3c4a-56b1-4a43-a924-a2118e2adaf4",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

@@ -1,6 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI; // THÊM DÒNG NÀY: Để lấy RawImage
+using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 using System.Collections.Generic;
 
 public class SecurityCameraManager : MonoBehaviour
@@ -12,21 +13,28 @@ public class SecurityCameraManager : MonoBehaviour
     {
         public TextMeshProUGUI camNameText;
         public GameObject noSignalUI;
-        // THAY ĐỔI LỚN: Kéo tấm màn hình Raw Image vào đây thay vì file cuộn băng
         public RawImage screenDisplay; 
         [HideInInspector] public int currentIndex = 0;
     }
 
-    [Header("--- Danh sách Màn hình Camera ---")]
+    [Header("--- Cấu hình Màn hình ---")]
     public List<CameraScreen> screens;
 
+    [Header("--- Tối ưu hóa (Optimization) ---")]
+    [Tooltip("Giới hạn FPS của Camera an ninh (CCTV thực tế chỉ chạy tầm 15 FPS).")]
+    public float cameraFPS = 15f;
+
     private List<SmartDeviceController> cameraList = new List<SmartDeviceController>();
-    // TỪ ĐIỂN: Lưu trữ cuộn băng RIÊNG của từng Camera
     private Dictionary<SmartDeviceController, RenderTexture> camFeeds = new Dictionary<SmartDeviceController, RenderTexture>();
 
     void Awake()
     {
         if (Instance == null) Instance = this;
+    }
+
+    void Start()
+    {
+        StartCoroutine(RenderCamerasAtLowFPS());
     }
 
     public void RegisterCamera(SmartDeviceController cam)
@@ -35,11 +43,10 @@ public class SecurityCameraManager : MonoBehaviour
         {
             cameraList.Add(cam);
 
-            // TÍNH NĂNG MỚI: Tự động tạo "Cuộn băng" (RenderTexture) cho Camera này bằng Code!
-            // Bạn không cần phải tạo file bằng tay trong Project nữa.
             if (cam.securityCamera != null && !camFeeds.ContainsKey(cam))
             {
-                RenderTexture newRT = new RenderTexture(512, 512, 16);
+                RenderTexture newRT = new RenderTexture(256, 256, 1);
+                cam.securityCamera.enabled = false; // Ngủ đông mặc định
                 cam.securityCamera.targetTexture = newRT;
                 camFeeds.Add(cam, newRT);
             }
@@ -53,7 +60,7 @@ public class SecurityCameraManager : MonoBehaviour
         if (cameraList.Count == 0 || screenIndex >= screens.Count) return;
         screens[screenIndex].currentIndex++;
         if (screens[screenIndex].currentIndex >= cameraList.Count) screens[screenIndex].currentIndex = 0; 
-        UpdateAllDisplays(); // Phải update tất cả để kiểm tra xem có cam nào bị bỏ trống không
+        UpdateAllDisplays(); 
     }
 
     public void PrevCamera(int screenIndex)
@@ -66,7 +73,6 @@ public class SecurityCameraManager : MonoBehaviour
 
     public void UpdateAllDisplays()
     {
-        // 1. Cập nhật hình ảnh cho TỪNG MÀN HÌNH
         for (int i = 0; i < screens.Count; i++)
         {
             if (cameraList.Count == 0) continue;
@@ -74,40 +80,85 @@ public class SecurityCameraManager : MonoBehaviour
             CameraScreen screen = screens[i];
             SmartDeviceController currentCam = cameraList[screen.currentIndex];
 
-            if (screen.camNameText != null) screen.camNameText.text = currentCam.deviceName;
+            if (screen.camNameText != null && screen.camNameText.text != currentCam.deviceName)
+            {
+                screen.camNameText.text = currentCam.deviceName;
+            }
 
             if (currentCam.isOn)
             {
-                // BẬT: Lấy sóng từ cuộn băng của Camera truyền lên Màn hình
                 if (screen.screenDisplay != null && camFeeds.ContainsKey(currentCam))
-                {
                     screen.screenDisplay.texture = camFeeds[currentCam];
-                }
-                if (screen.noSignalUI != null) screen.noSignalUI.SetActive(false);
+
+                if (screen.noSignalUI != null && screen.noSignalUI.activeSelf) 
+                    screen.noSignalUI.SetActive(false);
             }
             else
             {
-                // TẮT: Ngắt sóng, hiện màn đen No Signal
-                if (screen.screenDisplay != null) screen.screenDisplay.texture = null;
-                if (screen.noSignalUI != null) screen.noSignalUI.SetActive(true);
+                if (screen.screenDisplay != null && screen.screenDisplay.texture != null) 
+                    screen.screenDisplay.texture = null;
+
+                if (screen.noSignalUI != null && !screen.noSignalUI.activeSelf) 
+                    screen.noSignalUI.SetActive(true);
             }
         }
+    }
 
-        // 2. TỐI ƯU FPS: Quét xem Camera nào ĐANG BẬT ĐIỆN nhưng KHÔNG CÓ AI XEM -> Tắt nó đi!
-        foreach (var cam in cameraList)
+    // ĐÃ SỬA LỖI: Tương thích hoàn toàn 100% với Universal Render Pipeline (URP)
+    private IEnumerator RenderCamerasAtLowFPS()
+    {
+        WaitForSeconds waitTime = new WaitForSeconds(1f / cameraFPS);
+
+        while (true)
         {
-            if (cam.securityCamera == null) continue;
-            
-            bool isBeingWatched = false;
-            foreach (var screen in screens)
+            // 1. Nghỉ ngơi theo FPS đã cấu hình (Ví dụ: 15 lần / giây)
+            yield return waitTime;
+
+            List<Camera> activeCams = new List<Camera>();
+
+            // 2. Tìm xem Camera nào đang có người xem
+            foreach (var cam in cameraList)
             {
-                if (cameraList[screen.currentIndex] == cam && cam.isOn)
+                if (cam.securityCamera == null || !cam.isOn) continue;
+
+                bool isBeingWatched = false;
+                foreach (var screen in screens)
                 {
-                    isBeingWatched = true;
-                    break;
+                    if (cameraList[screen.currentIndex] == cam)
+                    {
+                        isBeingWatched = true;
+                        break;
+                    }
+                }
+
+                // Nếu có người xem -> Đánh thức Camera dậy cho URP tự nhận diện
+                if (isBeingWatched)
+                {
+                    cam.securityCamera.enabled = true;
+                    activeCams.Add(cam.securityCamera);
                 }
             }
-            cam.securityCamera.enabled = isBeingWatched;
+
+            // 3. NẾU có camera được bật, ta phải đợi URP vẽ xong khung hình này
+            if (activeCams.Count > 0)
+            {
+                yield return new WaitForEndOfFrame();
+
+                // 4. Vẽ xong rồi -> Lập tức "bấm nút Tắt" để chúng không tốn tài nguyên cho các khung hình sau
+                foreach (var cam in activeCams)
+                {
+                    cam.enabled = false;
+                }
+            }
         }
+    }
+
+    void OnDestroy()
+    {
+        foreach (var rt in camFeeds.Values)
+        {
+            if (rt != null) rt.Release(); 
+        }
+        camFeeds.Clear();
     }
 }
